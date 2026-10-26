@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduSoal AI Pro - SMPN 1 Plampang</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        @media print {
+            body * { visibility: hidden; }
+            #printable-area, #printable-area * { visibility: visible; }
+            #printable-area { position: absolute; left: 0; top: 0; width: 100%; }
+            .no-print { display: none !important; }
+        }
+        .tab-btn.active {
+            border-bottom: 3px solid #2563eb;
+            color: #2563eb;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 min-h-screen flex flex-col justify-between">
+
+    <!-- Navbar -->
+    <header class="bg-blue-700 text-white shadow-md sticky top-0 z-50 no-print">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="bg-white text-blue-700 p-2 rounded-lg font-bold text-xl shadow">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg leading-tight">EduSoal AI Pro</h1>
+                    <p class="text-xs text-blue-200">SMPN 1 Plampang &bull; Integrasi Kurikulum Indonesia</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-2">
+                <button onclick="switchMainTab('generator')" id="nav-gen" class="px-3 py-1.5 rounded-lg text-sm font-medium bg-blue-800 transition flex items-center space-x-1">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <span class="hidden sm:inline">Generator & Kisi-Kisi</span>
+                </button>
+                <button onclick="switchMainTab('admin')" id="nav-admin" class="px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-blue-800 transition flex items-center space-x-1">
+                    <i class="fa-solid fa-user-shield"></i>
+                    <span class="hidden sm:inline">Dashboard Admin</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-6">
+
+        <!-- TAB 1: GENERATOR SOAL & KISI-KISI -->
+        <section id="sec-generator" class="space-y-6">
+            
+            <!-- Panel Konfigurasi -->
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 no-print">
+                <h2 class="text-lg font-bold text-gray-900 mb-4 flex items-center space-x-2">
+                    <i class="fa-solid fa-sliders text-blue-600"></i>
+                    <span>Konfigurasi Penyusunan Soal & Kurikulum</span>
+                </h2>
+
+                <form onsubmit="generateAllData(event)" class="space-y-5">
+                    <!-- Baris 1: Kurikulum & Tingkat -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Kurikulum</label>
+                            <select id="kurikulum" class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                                <option value="Kurikulum Merdeka">Kurikulum Merdeka (CP/TP)</option>
+                                <option value="Kurikulum 2013 (K13)">Kurikulum 2013 / K13 (KD/Indikator)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Mata Pelajaran</label>
+                            <input type="text" id="mapel" required value="IPA (Ilmu Pengetahuan Alam)" class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Kelas / Semester</label>
+                            <select id="kelas" class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                                <option value="VII / Ganjil">Kelas VII / Ganjil</option>
+                                <option value="VIII / Ganjil">Kelas VIII / Ganjil</option>
+                                <option value="IX / Ganjil">Kelas IX / Ganjil</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Tahun Ajaran</label>
+                            <input type="text" id="tahun" value="2026/2027" class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        </div>
+                    </div>
+
+                    <!-- Baris 2: Topik & Capaian -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Materi / Bab</label>
+                            <input type="text" id="materi" required value="Sistem Organisasi Kehidupan & Sel" class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Capaian Pembelajaran (CP) / KD</label>
+                            <input type="text" id="cp_kd" required value="Menganalisis keterkaitan struktur jaringan dengan fungsi organ pada tumbuhan dan hewan." class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        </div>
+                    </div>
+
+                    <!-- Baris 3: Komposisi Jenis Soal -->
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 uppercase mb-2">Jumlah & Bentuk Soal</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 bg-gray-50 p-3 rounded-lg border">
+                            <div>
+                                <span class="text-xs text-gray-600 block">Pilihan Ganda (PG)</span>
+                                <input type="number" id="num_pg" min="0" value="3" class="w-full px-2 py-1 border rounded text-sm text-center">
+                            </div>
+                            <div>
+                                <span class="text-xs text-gray-600 block">PG Kompleks</span>
+                                <input type="number" id="num_pgk" min="0" value="1" class="w-full px-2 py-1 border rounded text-sm text-center">
+                            </div>
+                            <div>
+                                <span class="text-xs text-gray-600 block">Menjodohkan</span>
+                                <input type="number" id="num_jodoh" min="0" value="1" class="w-full px-2 py-1 border rounded text-sm text-center">
+                            </div>
+                            <div>
+                                <span class="text-xs text-gray-600 block">Isian Singkat</span>
+                                <input type="number" id="num_isian" min="0" value="1" class="w-full px-2 py-1 border rounded text-sm text-center">
+                            </div>
+                            <div>
+                                <span class="text-xs text-gray-600 block">Uraian / Essay</span>
+                                <input type="number" id="num_uraian" min="0" value="1" class="w-full px-2 py-1 border rounded text-sm text-center">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="btn-generate" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-lg transition shadow flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-bolt"></i>
+                        <span>Generate Soal, Kisi-Kisi & Kunci Jawaban (AI)</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Panel Output Hasil (Tabs Output) -->
+            <div id="output-section" class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                
+                <!-- Toolbar Ekspor & Navigasi Hasil -->
+                <div class="bg-gray-50 border-b p-4 flex flex-col sm:flex-row justify-between items-center gap-3 no-print">
+                    <div class="flex space-x-4 border-b sm:border-0 w-full sm:w-auto">
+                        <button onclick="switchView('naskah')" id="tab-naskah" class="tab-btn active pb-2 text-sm">
+                            <i class="fa-solid fa-file-lines mr-1"></i> Naskah Soal Ujian
+                        </button>
+                        <button onclick="switchView('kisikisi')" id="tab-kisikisi" class="tab-btn pb-2 text-sm text-gray-500">
+                            <i class="fa-solid fa-table-cells mr-1"></i> Matriks Kisi-Kisi
+                        </button>
+                        <button onclick="switchView('kunci')" id="tab-kunci" class="tab-btn pb-2 text-sm text-gray-500">
+                            <i class="fa-solid fa-key mr-1"></i> Kunci & Rubrik
+                        </button>
+                    </div>
+
+                    <div class="flex space-x-2 w-full sm:w-auto justify-end">
+                        <button onclick="exportWord()" class="bg-blue-800 hover:bg-blue-900 text-white px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1 shadow-sm">
+                            <i class="fa-solid fa-file-word"></i>
+                            <span>Download Word (.docx)</span>
+                        </button>
+                        <button onclick="window.print()" class="bg-gray-800 hover:bg-gray-900 text-white px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1 shadow-sm">
+                            <i class="fa-solid fa-print"></i>
+                            <span>Cetak / PDF</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Printable Document Area -->
+                <div id="printable-area" class="p-8">
+                    
+                    <!-- Kop Surat Sekolah Resmi -->
+                    <div class="text-center border-b-4 border-double border-gray-800 pb-3 mb-6">
+                        <h3 class="font-bold text-sm tracking-wider uppercase">PEMERINTAH KABUPATEN SUMBAWA</h3>
+                        <h3 class="font-bold text-base tracking-wider uppercase">DINAS PENDIDIKAN DAN KEBUDAYAAN</h3>
+                        <h2 class="font-extrabold text-xl tracking-wide uppercase text-blue-900">SMP NEGERI 1 PLAMPANG</h2>
+                        <p class="text-xs text-gray-600 mt-1">Jalan Lintas Sumbawa - Bima Km. 64, Kecamatan Plampang, Kab. Sumbawa, NTB 84383</p>
+                    </div>
+
+                    <!-- Identitas Ujian -->
+                    <div class="grid grid-cols-2 gap-2 text-xs border p-3 rounded mb-6 bg-gray-50">
+                        <div><strong>Mata Pelajaran:</strong> <span id="out-mapel">IPA</span></div>
+                        <div><strong>Kurikulum:</strong> <span id="out-kurikulum">Kurikulum Merdeka</span></div>
+                        <div><strong>Kelas / Semester:</strong> <span id="out-kelas">VII / Ganjil</span></div>
+                        <div><strong>Tahun Ajaran:</strong> <span id="out-tahun">2026/2027</span></div>
+                        <div><strong>Materi:</strong> <span id="out-materi">Sistem Organisasi Kehidupan & Sel</span></div>
+                        <div><strong>Penyusun:</strong> Ardin Yusuf, S.Pd.</div>
+                    </div>
+
+                    <!-- TAMPILAN 1: NASKAH SOAL UJIAN -->
+                    <div id="view-naskah" class="space-y-6">
+                        <h3 class="font-bold text-center underline text-sm uppercase mb-4">NASKAH SOAL ASESMEN / UJIAN</h3>
+                        <div id="content-soal" class="space-y-6 text-sm">
+                            <!-- Soal Dinamis Didaftarkan Lewat JS -->
+                        </div>
+                    </div>
+
+                    <!-- TAMPILAN 2: MATRIKS KISI-KISI SOAL -->
+                    <div id="view-kisikisi" class="hidden">
+                        <h3 class="font-bold text-center underline text-sm uppercase mb-4">KISI-KISI PENULISAN SOAL</h3>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-xs border-collapse border border-gray-400">
+                                <thead>
+                                    <tr class="bg-gray-100 text-center font-bold border-b border-gray-400">
+                                        <th class="border border-gray-400 p-2">No</th>
+                                        <th class="border border-gray-400 p-2">Capaian Pembelajaran / KD</th>
+                                        <th class="border border-gray-400 p-2">Materi</th>
+                                        <th class="border border-gray-400 p-2">Indikator Soal</th>
+                                        <th class="border border-gray-400 p-2">Level Kognitif</th>
+                                        <th class="border border-gray-400 p-2">Bentuk Soal</th>
+                                        <th class="border border-gray-400 p-2">No. Soal</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="content-kisikisi">
+                                    <!-- Tabel Kisi-kisi JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- TAMPILAN 3: KUNCI JAWABAN & RUBRIK -->
+                    <div id="view-kunci" class="hidden">
+                        <h3 class="font-bold text-center underline text-sm uppercase mb-4">KUNCI JAWABAN DAN RUBRIK PENILAIAN</h3>
+                        <div id="content-kunci" class="space-y-4 text-xs">
+                            <!-- Kunci Jawaban JS -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: DASHBOARD ADMIN -->
+        <section id="sec-admin" class="hidden space-y-6">
+            <!-- Profil Admin -->
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center space-x-4">
+                    <div class="w-16 h-16 bg-blue-600 text-white font-bold rounded-full flex items-center justify-center text-xl shadow">
+                        AY
+                    </div>
+                    <div>
+                        <h2 class="font-bold text-lg text-gray-900">Ardin Yusuf, S.Pd.</h2>
+                        <p class="text-xs text-gray-500">Administrator System & Administrator Kurikulum SMPN 1 Plampang</p>
+                        <span class="inline-block mt-1 bg-emerald-100 text-emerald-800 text-[10px] font-semibold px-2 py-0.5 rounded">Status: Aktif</span>
+                    </div>
+                </div>
+                <div class="flex space-x-2 text-xs">
+                    <div class="bg-gray-50 p-3 border rounded text-center">
+                        <span class="block text-gray-500">Total Bank Soal</span>
+                        <span class="font-bold text-base text-blue-600">128 Soal</span>
+                    </div>
+                    <div class="bg-gray-50 p-3 border rounded text-center">
+                        <span class="block text-gray-500">Kurikulum Usulan</span>
+                        <span class="font-bold text-base text-blue-600">Merdeka & K13</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabel Riwayat Pembuatan -->
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                <h3 class="font-bold text-base text-gray-900 mb-4 flex items-center space-x-2">
+                    <i class="fa-solid fa-clock-rotate-left text-blue-600"></i>
+                    <span>Riwayat Pembuatan Paket Soal & Kisi-Kisi</span>
+                </h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs border-collapse">
+                        <thead>
+                            <tr class="bg-gray-50 text-gray-600 border-b">
+                                <th class="p-3">Tanggal</th>
+                                <th class="p-3">Mata Pelajaran</th>
+                                <th class="p-3">Kurikulum</th>
+                                <th class="p-3">Materi</th>
+                                <th class="p-3">Bentuk Soal</th>
+                                <th class="p-3 text-center">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-table">
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="p-3">26/10/2026</td>
+                                <td class="p-3 font-semibold">IPA</td>
+                                <td class="p-3">Kurikulum Merdeka</td>
+                                <td class="p-3">Sistem Organisasi Kehidupan</td>
+                                <td class="p-3">PG, PGK, Jodoh, Isian, Uraian</td>
+                                <td class="p-3 text-center">
+                                    <button class="text-blue-600 hover:underline">Lihat</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t py-4 text-center text-xs text-gray-500 no-print">
+        <p>&copy; 2026 EduSoal AI Pro &bull; SMPN 1 Plampang &bull; Dikembangkan oleh Ardin Yusuf</p>
+    </footer>
+
+    <!-- Logic Script -->
+    <script>
+        function switchMainTab(tab) {
+            document.getElementById('sec-generator').classList.add('hidden');
+            document.getElementById('sec-admin').classList.add('hidden');
+            document.getElementById('nav-gen').classList.remove('bg-blue-800');
+            document.getElementById('nav-admin').classList.remove('bg-blue-800');
+
+            if (tab === 'generator') {
+                document.getElementById('sec-generator').classList.remove('hidden');
+                document.getElementById('nav-gen').classList.add('bg-blue-800');
+            } else {
+                document.getElementById('sec-admin').classList.remove('hidden');
+                document.getElementById('nav-admin').classList.add('bg-blue-800');
+            }
+        }
+
+        function switchView(view) {
+            document.getElementById('view-naskah').classList.add('hidden');
+            document.getElementById('view-kisikisi').classList.add('hidden');
+            document.getElementById('view-kunci').classList.add('hidden');
+
+            document.getElementById('tab-naskah').classList.remove('active', 'text-gray-500');
+            document.getElementById('tab-kisikisi').classList.remove('active', 'text-gray-500');
+            document.getElementById('tab-kunci').classList.remove('active', 'text-gray-500');
+
+            document.getElementById('tab-naskah').classList.add('text-gray-500');
+            document.getElementById('tab-kisikisi').classList.add('text-gray-500');
+            document.getElementById('tab-kunci').classList.add('text-gray-500');
+
+            if (view === 'naskah') {
+                document.getElementById('view-naskah').classList.remove('hidden');
+                document.getElementById('tab-naskah').classList.add('active');
+                document.getElementById('tab-naskah').classList.remove('text-gray-500');
+            } else if (view === 'kisikisi') {
+                document.getElementById('view-kisikisi').classList.remove('hidden');
+                document.getElementById('tab-kisikisi').classList.add('active');
+                document.getElementById('tab-kisikisi').classList.remove('text-gray-500');
+            } else if (view === 'kunci') {
+                document.getElementById('view-kunci').classList.remove('hidden');
+                document.getElementById('tab-kunci').classList.add('active');
+                document.getElementById('tab-kunci').classList.remove('text-gray-500');
+            }
+        }
+
+        function generateAllData(e) {
+            e.preventDefault();
+            
+            const kurikulum = document.getElementById('kurikulum').value;
+            const mapel = document.getElementById('mapel').value;
+            const kelas = document.getElementById('kelas').value;
+            const tahun = document.getElementById('tahun').value;
+            const materi = document.getElementById('materi').value;
+            const cp_kd = document.getElementById('cp_kd').value;
+
+            const n_pg = parseInt(document.getElementById('num_pg').value) || 0;
+            const n_pgk = parseInt(document.getElementById('num_pgk').value) || 0;
+            const n_jodoh = parseInt(document.getElementById('num_jodoh').value) || 0;
+            const n_isian = parseInt(document.getElementById('num_isian').value) || 0;
+            const n_uraian = parseInt(document.getElementById('num_uraian').value) || 0;
+
+            // Update Header Identitas
+            document.getElementById('out-mapel').innerText = mapel;
+            document.getElementById('out-kurikulum').innerText = kurikulum;
+            document.getElementById('out-kelas').innerText = kelas;
+            document.getElementById('out-tahun').innerText = tahun;
+            document.getElementById('out-materi').innerText = materi;
+
+            let soalHTML = '';
+            let kisiHTML = '';
+            let kunciHTML = '';
+            let currentNo = 1;
+
+            // 1. PILIHAN GANDA (PG)
+            if (n_pg > 0) {
+                soalHTML += `<h4 class="font-bold border-b pb-1 text-blue-900">A. PILIHAN GANDA</h4>`;
+                for (let i = 0; i < n_pg; i++) {
+                    soalHTML += `
+                        <div>
+                            <p class="font-medium"><strong>${currentNo}.</strong> Tingkatan organisasi kehidupan terkecil yang menyusun struktur penyusun makhluk hidup adalah...</p>
+                            <div class="grid grid-cols-2 gap-2 mt-1 text-xs pl-4">
+                                <div>A. Jaringan</div>
+                                <div>B. Sel</div>
+                                <div>C. Organ</div>
+                                <div>D. Sistem Organ</div>
+                            </div>
+                        </div>
+                    `;
+                    kisiHTML += `
+                        <tr>
+                            <td class="border border-gray-400 p-2 text-center">${currentNo}</td>
+                            <td class="border border-gray-400 p-2">${cp_kd}</td>
+                            <td class="border border-gray-400 p-2">${materi}</td>
+                            <td class="border border-gray-400 p-2">Peserta didik dapat menentukan unit terkecil penyusun makhluk hidup.</td>
+                            <td class="border border-gray-400 p-2 text-center">L1 (C2)</td>
+                            <td class="border border-gray-400 p-2 text-center">Pilihan Ganda</td>
+                            <td class="border border-gray-400 p-2 text-center">${currentNo}</td>
+                        </tr>
+                    `;
+                    kunciHTML += `<div><strong>${currentNo}. Jawaban: B (Sel)</strong> &bull; Skor: 1<br><span class="text-gray-500">Pembahasan: Sel adalah unit struktural dan fungsional terkecil dalam organisasi kehidupan.</span></div>`;
+                    currentNo++;
+                }
+            }
+
+            // 2. PILIHAN GANDA KOMPLEKS (PGK)
+            if (n_pgk > 0) {
+                soalHTML += `<h4 class="font-bold border-b pb-1 text-blue-900 mt-4">B. PILIHAN GANDA KOMPLEKS (Pilih lebih dari satu)</h4>`;
+                for (let i = 0; i < n_pgk; i++) {
+                    soalHTML += `
+                        <div>
+                            <p class="font-medium"><strong>${currentNo}.</strong> Berikan tanda centang (&check;) pada pernyataan yang BENAR mengenai organel sel tumbuhan berikut:</p>
+                            <div class="space-y-1 mt-1 text-xs pl-4">
+                                <label class="block"><input type="checkbox"> Memiliki kloroplas untuk proses fotosintesis</label>
+                                <label class="block"><input type="checkbox"> Dinding sel membuat bentuk sel relatif tetap</label>
+                                <label class="block"><input type="checkbox"> Memiliki sentriol yang berukuran besar</label>
+                            </div>
+                        </div>
+                    `;
+                    kisiHTML += `
+                        <tr>
+                            <td class="border border-gray-400 p-2 text-center">${currentNo}</td>
+                            <td class="border border-gray-400 p-2">${cp_kd}</td>
+                            <td class="border border-gray-400 p-2">${materi}</td>
+                            <td class="border border-gray-400 p-2">Peserta didik dapat menganalisis ciri khas organel sel tumbuhan.</td>
+                            <td class="border border-gray-400 p-2 text-center">L2 (C4)</td>
+                            <td class="border border-gray-400 p-2 text-center">PG Kompleks</td>
+                            <td class="border border-gray-400 p-2 text-center">${currentNo}</td>
+                        </tr>
+                    `;
+                    kunciHTML += `<div><strong>${currentNo}. Jawaban: Pernyataan 1 dan 2 BENAR</strong> &bull; Skor: 2<br><span class="text-gray-500">Pembahasan: Sel tumbuhan memiliki kloroplas dan dinding sel. Sentriol hanya ada pada sel hewan.</span></div>`;
+                    currentNo++;
+                }
+            }
+
+            // 3. MENJODOHKAN
+            if (n_jodoh > 0) {
+                soalHTML += `<h4 class="font-bold border-b pb-1 text-blue-900 mt-4">C. MENJODOHKAN</h4>`;
+                for (let i = 0; i < n_jodoh; i++) {
+                    soalHTML += `
+                        <div>
+                            <p class="font-medium mb-2"><strong>${currentNo}.</strong> Jodohkanlah nama organel sel pada Kolom A dengan fungsinya pada Kolom B yang sesuai:</p>
+                            <div class="grid grid-cols-2 gap-4 text-xs pl-4 border p-2 rounded bg-gray-50">
+                                <div>
+                                    <p class="font-bold border-b mb-1">Kolom A (Organel)</p>
+                                    <p>1. Mitokondria</p>
+                                    <p>2. Ribosom</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold border-b mb-1">Kolom B (Fungsi)</p>
+                                    <p>A. Sintesis protein</p>
+                                    <p>B. Respirasi sel & Penghasil energi</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    kisiHTML += `
+                        <tr>
+                            <td class="border border-gray-400 p-2 text-center">${currentNo}</td>
+                            <td class="border border-gray-400 p-2">${cp_kd}</td>
+                            <td class="border border-gray-400 p-2">${materi}</td>
+                            <td class="border border-gray-400 p-2">Peserta didik dapat menjodohkan organel sel dengan fungsinya secara tepat.</td>
+                            <td class="border border-gray-400 p-2 text-center">L2 (C3)</td>
+                            <td class="border border-gray-400 p-2 text-center">Menjodohkan</td>
+                            <td class="border border-gray-400 p-2 text-center">${currentNo}</td>
+                        </tr>
+                    `;
+                    kunciHTML += `<div><strong>${currentNo}. Jawaban: (1 - B) dan (2 - A)</strong> &bull; Skor: 2</div>`;
+                    currentNo++;
+                }
+            }
+
+            // 4. ISIAN SINGKAT
+            if (n_isian > 0) {
+                soalHTML += `<h4 class="font-bold border-b pb-1 text-blue-900 mt-4">D. ISIAN SINGKAT</h4>`;
+                for (let i = 0; i < n_isian; i++) {
+                    soalHTML += `
+                        <div>
+                            <p class="font-medium"><strong>${currentNo}.</strong> Kumpulan dari beberapa jaringan yang bekerja sama untuk melakukan fungsi tertentu disebut ....................</p>
+                        </div>
+                    `;
+                    kisiHTML += `
+                        <tr>
+                            <td class="border border-gray-400 p-2 text-center">${currentNo}</td>
+                            <td class="border border-gray-400 p-2">${cp_kd}</td>
+                            <td class="border border-gray-400 p-2">${materi}</td>
+                            <td class="border border-gray-400 p-2">Peserta didik dapat menyebutkan tingkatan hirarki organisasi kehidupan.</td>
+                            <td class="border border-gray-400 p-2 text-center">L1 (C1)</td>
+                            <td class="border border-gray-400 p-2 text-center">Isian Singkat</td>
+                            <td class="border border-gray-400 p-2 text-center">${currentNo}</td>
+                        </tr>
+                    `;
+                    kunciHTML += `<div><strong>${currentNo}. Jawaban: Organ</strong> &bull; Skor: 1</div>`;
+                    currentNo++;
+                }
+            }
+
+            // 5. URAIAN / ESSAY
+            if (n_uraian > 0) {
+                soalHTML += `<h4 class="font-bold border-b pb-1 text-blue-900 mt-4">E. URAIAN / ESSAY</h4>`;
+                for (let i = 0; i < n_uraian; i++) {
+                    soalHTML += `
+                        <div>
+                            <p class="font-medium"><strong>${currentNo}.</strong> Jelaskan perbedaan utama antara sel hewan dan sel tumbuhan beserta alasannya!</p>
+                        </div>
+                    `;
+                    kisiHTML += `
+                        <tr>
+                            <td class="border border-gray-400 p-2 text-center">${currentNo}</td>
+                            <td class="border border-gray-400 p-2">${cp_kd}</td>
+                            <td class="border border-gray-400 p-2">${materi}</td>
+                            <td class="border border-gray-400 p-2">Peserta didik dapat membandingkan struktur organel sel hewan dan tumbuhan.</td>
+                            <td class="border border-gray-400 p-2 text-center">L3 (C5 - HOTS)</td>
+                            <td class="border border-gray-400 p-2 text-center">Uraian</td>
+                            <td class="border border-gray-400 p-2 text-center">${currentNo}</td>
+                        </tr>
+                    `;
+                    kunciHTML += `
+                        <div>
+                            <strong>${currentNo}. Rubrik Jawaban Uraian:</strong> &bull; Skor Maksimal: 4
+                            <ul class="list-disc pl-5 text-gray-600 mt-1">
+                                <li>Menyebutkan sel tumbuhan memiliki dinding sel & kloroplas sedangkan sel hewan tidak (Skor 2)</li>
+                                <li>Menjelaskan vakuola tumbuhan lebih besar dibanding sel hewan (Skor 2)</li>
+                            </ul>
+                        </div>
+                    `;
+                    currentNo++;
+                }
+            }
+
+            document.getElementById('content-soal').innerHTML = soalHTML;
+            document.getElementById('content-kisikisi').innerHTML = kisiHTML;
+            document.getElementById('content-kunci').innerHTML = kunciHTML;
+        }
+
+        function exportWord() {
+            const content = document.getElementById('printable-area').innerHTML;
+            const header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' "+
+                "xmlns:w='urn:schemas-microsoft-com:office:word' "+
+                "xmlns='http://www.w3.org/TR/REC-html40'>"+
+                "<head><meta charset='utf-8'><title>Export Word</title></head><body>";
+            const footer = "</body></html>";
+            const sourceHTML = header + content + footer;
+
+            const blob = new Blob(['\ufeff', sourceHTML], {
+                type: 'application/msword'
+            });
+
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'EduSoal_SMPN1_Plampang.doc';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        // Render Awal Default
+        window.onload = function() {
+            generateAllData({ preventDefault: () => {} });
+        };
+    </script>
+</body>
+</html>

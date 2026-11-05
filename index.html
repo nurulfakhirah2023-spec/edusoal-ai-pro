@@ -208,10 +208,43 @@
                     </div>
                 </div>
 
-                <!-- View 3: Kunci Jawaban -->
-                <div id="view-kunci" class="hidden">
-                    <h3 class="font-bold text-sm text-blue-900 mb-3 uppercase tracking-wider">KUNCI JAWABAN & PEDOMAN PENSKORAN</h3>
-                    <div id="container-kunci" class="space-y-3 text-sm"></div>
+                <!-- View 3: Kunci Jawaban (Diperbarui Rapi) -->
+                <div id="view-kunci" class="hidden space-y-6">
+                    <h3 class="font-bold text-sm text-blue-900 mb-3 uppercase tracking-wider border-b pb-2">KUNCI JAWABAN & PEDOMAN PENSKORAN</h3>
+                    
+                    <div>
+                        <h4 class="font-bold text-xs text-gray-700 uppercase mb-2">A. KUNCI JAWABAN PILIHAN GANDA</h4>
+                        <div id="kunci-pg" class="grid grid-cols-2 md:grid-cols-5 gap-2 text-sm"></div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-bold text-xs text-gray-700 uppercase mb-2">B. KUNCI JAWABAN PG KOMPLEKS</h4>
+                        <div id="kunci-pgk" class="space-y-2 text-sm"></div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-bold text-xs text-gray-700 uppercase mb-2">C. KUNCI JAWABAN MENJODOHKAN</h4>
+                        <div id="kunci-jodoh" class="space-y-2 text-sm"></div>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-xs text-gray-700 uppercase mb-2">D. KUNCI JAWABAN ISIAN SINGKAT</h4>
+                        <div id="kunci-isian" class="space-y-2 text-sm"></div>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-xs text-gray-700 uppercase mb-2">E. KUNCI JAWABAN & RUBRIK URAIAN</h4>
+                        <div id="kunci-uraian" class="space-y-3 text-sm"></div>
+                    </div>
+
+                    <!-- Pedoman Penskoran -->
+                    <div class="bg-gray-50 border p-4 rounded-lg text-xs space-y-1">
+                        <p class="font-bold text-gray-700">PEDOMAN PENSKORAN:</p>
+                        <p>• Pilihan Ganda: Benar = 1 | Salah = 0</p>
+                        <p>• PG Kompleks / Menjodohkan / Isian: Benar = 2 | Salah = 0</p>
+                        <p>• Uraian / Essay: Skor Maksimal = 4 per nomor (sesuai kedalaman jawaban)</p>
+                        <p class="font-semibold text-blue-800 pt-1">Nilai Akhir = (Total Skor Perolehan / Total Skor Maksimal) x 100</p>
+                    </div>
                 </div>
 
             </div>
@@ -222,62 +255,64 @@
     <script>
         const bankSoalMaster = {
             "Informatika ( TIK )": [
-                { soal: "Perangkat keras komputer yang berfungsi untuk memasukkan data atau perintah ke dalam sistem komputer adalah...", opsi: ["Input Device", "Output Device", "Processing Device", "Storage Device"], kunci: "A", indikator: "Mengidentifikasi perangkat masukan pada komputer." },
-                { soal: "Ekstensi file standar yang dihasilkan oleh aplikasi pengolah kata berbasis dokumen teks adalah...", opsi: [".xlsx", ".docx", ".pptx", ".pdf"], kunci: "B", indikator: "Menentukan ekstensi file dokumen pengolah kata." },
-                { soal: "Kombinasi tombol pintas (shortcut keyboard) untuk melakukan perintah salin (copy) data adalah...", opsi: ["Ctrl + V", "Ctrl + X", "Ctrl + C", "Ctrl + Z"], kunci: "C", indikator: "Menentukan tombol pintas untuk menyalin objek." },
-                { soal: "Jaringan komputer yang mencakup wilayah geografis antarkota atau negara disebut...", opsi: ["LAN", "MAN", "WAN", "PAN"], kunci: "C", indikator: "Membedakan jenis-jenis jaringan komputer." },
-                { soal: "Program aplikasi yang digunakan untuk menjelajahi halaman web di internet dinamakan...", opsi: ["Browser", "Compiler", "Text Editor", "Operating System"], kunci: "A", indikator: "Mengidentifikasi perangkat lunak peramban web." }
+                { soal: "Perangkat keras komputer yang berfungsi untuk memasukkan data atau perintah ke dalam sistem komputer adalah...", opsi: ["Input Device", "Output Device", "Processing Device", "Storage Device"], kunciIdx: 0, kunciText: "Input Device", indikator: "Mengidentifikasi perangkat masukan pada komputer." },
+                { soal: "Ekstensi file standar yang dihasilkan oleh aplikasi pengolah kata berbasis dokumen teks adalah...", opsi: [".xlsx", ".docx", ".pptx", ".pdf"], kunciIdx: 1, kunciText: ".docx", indikator: "Menentukan ekstensi file dokumen pengolah kata." },
+                { soal: "Kombinasi tombol pintas (shortcut keyboard) untuk melakukan perintah salin (copy) data adalah...", opsi: ["Ctrl + V", "Ctrl + X", "Ctrl + C", "Ctrl + Z"], kunciIdx: 2, kunciText: "Ctrl + C", indikator: "Menentukan tombol pintas untuk menyalin objek." },
+                { soal: "Jaringan komputer yang mencakup wilayah geografis antarkota atau negara disebut...", opsi: ["LAN", "MAN", "WAN", "PAN"], kunciIdx: 2, kunciText: "WAN", indikator: "Membedakan jenis-jenis jaringan komputer." },
+                { soal: "Program aplikasi yang digunakan untuk menjelajahi halaman web di internet dinamakan...", opsi: ["Browser", "Compiler", "Text Editor", "Operating System"], kunciIdx: 0, kunciText: "Browser", indikator: "Mengidentifikasi perangkat lunak peramban web." }
             ],
             "IPA (Ilmu Pengetahuan Alam)": [
-                { soal: "Tingkatan organisasi kehidupan terkecil yang menyusun struktur fungsional makhluk hidup adalah...", opsi: ["Jaringan", "Sel", "Organ", "Sistem Organ"], kunci: "B", indikator: "Menyebutkan unit struktural terkecil makhluk hidup." },
-                { soal: "Bagian dari sel tumbuhan yang memberikan bentuk kaku serta berfungsi sebagai pelindung sel adalah...", opsi: ["Dinding Sel", "Membran Sel", "Sitoplasma", "Kloroplas"], kunci: "A", indikator: "Menjelaskan fungsi dinding sel pada tumbuhan." },
-                { soal: "Proses pembuatan zat makanan pada tumbuhan hijau dengan memanfaatkan energi cahaya matahari disebut...", opsi: ["Respirasi", "Fotosintesis", "Transpirasi", "Gutasi"], kunci: "B", indikator: "Mengidentifikasi proses fotosintesis pada tumbuhan." },
-                { soal: "Satuan Internasional (SI) untuk besaran pokok suhu adalah...", opsi: ["Celcius", "Fahrenheit", "Kelvin", "Reamur"], kunci: "C", indikator: "Menentukan satuan internasional besaran suhu." },
-                { soal: "Campuran antara dua zat atau lebih yang masih dapat dibedakan zat penyusunnya disebut...", opsi: ["Larutan", "Koloid", "Suspensi", "Senyawa"], kunci: "C", indikator: "Mengklasifikasikan karakteristik campuran." }
+                { soal: "Tingkatan organisasi kehidupan terkecil yang menyusun struktur fungsional makhluk hidup adalah...", opsi: ["Jaringan", "Sel", "Organ", "Sistem Organ"], kunciIdx: 1, kunciText: "Sel", indikator: "Menyebutkan unit struktural terkecil makhluk hidup." },
+                { soal: "Bagian dari sel tumbuhan yang memberikan bentuk kaku serta berfungsi sebagai pelindung sel adalah...", opsi: ["Dinding Sel", "Membran Sel", "Sitoplasma", "Kloroplas"], kunciIdx: 0, kunciText: "Dinding Sel", indikator: "Menjelaskan fungsi dinding sel pada tumbuhan." },
+                { soal: "Proses pembuatan zat makanan pada tumbuhan hijau dengan memanfaatkan energi cahaya matahari disebut...", opsi: ["Respirasi", "Fotosintesis", "Transpirasi", "Gutasi"], kunciIdx: 1, kunciText: "Fotosintesis", indikator: "Mengidentifikasi proses fotosintesis pada tumbuhan." },
+                { soal: "Satuan Internasional (SI) untuk besaran pokok suhu adalah...", opsi: ["Celcius", "Fahrenheit", "Kelvin", "Reamur"], kunciIdx: 2, kunciText: "Kelvin", indikator: "Menentukan satuan internasional besaran suhu." },
+                { soal: "Campuran antara dua zat atau lebih yang masih dapat dibedakan zat penyusunnya disebut...", opsi: ["Larutan", "Koloid", "Suspensi", "Senyawa"], kunciIdx: 2, kunciText: "Suspensi / Campuran Heterogen", indikator: "Mengklasifikasikan karakteristik campuran." }
             ],
             "Matematika": [
-                { soal: "Hasil dari operasi hitung bilangan bulat: (-12) + 8 - (-5) adalah...", opsi: ["1", "-1", "21", "-9"], kunci: "A", indikator: "Menghitung operasi hitung bilangan bulat." },
-                { soal: "Bentuk aljabar sederhana dari bentuk 3x + 4y - x + 2y adalah...", opsi: ["4x + 6y", "2x + 6y", "2x + 2y", "4x + 2y"], kunci: "B", indikator: "Menyederhanakan bentuk aljabar sejenis." },
-                { soal: "Besar penyiku dari suatu sudut yang besarnya 40 derajat adalah...", opsi: ["50 derajat", "140 derajat", "60 derajat", "90 derajat"], kunci: "A", indikator: "Menghitung besar sudut penyiku." },
-                { soal: "Keliling persegi panjang yang memiliki panjang 15 cm dan lebar 10 cm adalah...", opsi: ["25 cm", "50 cm", "150 cm", "75 cm"], kunci: "B", indikator: "Menghitung keliling persegi panjang." },
-                { soal: "Median dari data nilai: 70, 80, 60, 90, 75 adalah...", opsi: ["70", "75", "80", "65"], kunci: "B", indikator: "Menentukan nilai tengah (median) data." }
+                { soal: "Hasil dari operasi hitung bilangan bulat: (-12) + 8 - (-5) adalah...", opsi: ["1", "-1", "21", "-9"], kunciIdx: 0, kunciText: "1", indikator: "Menghitung operasi hitung bilangan bulat." },
+                { soal: "Bentuk aljabar sederhana dari bentuk 3x + 4y - x + 2y adalah...", opsi: ["4x + 6y", "2x + 6y", "2x + 2y", "4x + 2y"], kunciIdx: 1, kunciText: "2x + 6y", indikator: "Menyederhanakan bentuk aljabar sejenis." },
+                { soal: "Besar penyiku dari suatu sudut yang besarnya 40 derajat adalah...", opsi: ["50 derajat", "140 derajat", "60 derajat", "90 derajat"], kunciIdx: 0, kunciText: "50 derajat", indikator: "Menghitung besar sudut penyiku." },
+                { soal: "Keliling persegi panjang yang memiliki panjang 15 cm dan lebar 10 cm adalah...", opsi: ["25 cm", "50 cm", "150 cm", "75 cm"], kunciIdx: 1, kunciText: "50 cm", indikator: "Menghitung keliling persegi panjang." },
+                { soal: "Median dari data nilai: 70, 80, 60, 90, 75 adalah...", opsi: ["70", "75", "80", "65"], kunciIdx: 1, kunciText: "75", indikator: "Menentukan nilai tengah (median) data." }
             ],
             "Bahasa Indonesia": [
-                { soal: "Teks yang memuat paparan penjelasan mengenai suatu objek, tempat, atau peristiwa secara terperinci disebut teks...", opsi: ["Laporan", "Deskripsi", "Prosedur", "Eksplanasi"], kunci: "B", indikator: "Mengidentifikasi karakteristik teks deskripsi." },
-                { soal: "Unsur intrinsik cerita yang berupa pesan atau ajaran moral yang ingin disampaikan pengarang disebut...", opsi: ["Tema", "Alur", "Amanat", "Latar"], kunci: "C", indikator: "Menentukan unsur amanat dalam cerita." },
-                { soal: "Bagian awal dalam struktur teks laporan hasil observasi yang berisi pengenalan objek disebut...", opsi: ["Deskripsi Bagian", "Pernyataan Umum", "Simpulan", "Argumentasi"], kunci: "B", indikator: "Mengidentifikasi struktur teks laporan." },
-                { soal: "Kalimat yang subjeknya melakukan pekerjaan secara langsung disebut kalimat...", opsi: ["Pasif", "Aktif", "Tanya", "Perintah"], kunci: "B", indikator: "Membedakan kalimat aktif dan pasif." },
-                { soal: "Kata depan (preposisi) yang menunjukkan keterangan tempat di bawah ini yang tepat adalah...", opsi: ["Dari", "Ke", "Di", "Dan"], kunci: "C", indikator: "Penggunaan kata depan yang tepat." }
+                { soal: "Teks yang memuat paparan penjelasan mengenai suatu objek, tempat, atau peristiwa secara terperinci disebut teks...", opsi: ["Laporan", "Deskripsi", "Prosedur", "Eksplanasi"], kunciIdx: 1, kunciText: "Deskripsi", indikator: "Mengidentifikasi karakteristik teks deskripsi." },
+                { soal: "Unsur intrinsik cerita yang berupa pesan atau ajaran moral yang ingin disampaikan pengarang disebut...", opsi: ["Tema", "Alur", "Amanat", "Latar"], kunciIdx: 2, kunciText: "Amanat", indikator: "Menentukan unsur amanat dalam cerita." },
+                { soal: "Bagian awal dalam struktur teks laporan hasil observasi yang berisi pengenalan objek disebut...", opsi: ["Deskripsi Bagian", "Pernyataan Umum", "Simpulan", "Argumentasi"], kunciIdx: 1, kunciText: "Pernyataan Umum", indikator: "Mengidentifikasi struktur teks laporan." },
+                { soal: "Kalimat yang subjeknya melakukan pekerjaan secara langsung disebut kalimat...", opsi: ["Pasif", "Aktif", "Tanya", "Perintah"], kunciIdx: 1, kunciText: "Aktif", indikator: "Membedakan kalimat aktif dan pasif." },
+                { soal: "Kata depan (preposisi) yang menunjukkan keterangan tempat di bawah ini yang tepat adalah...", opsi: ["Dari", "Ke", "Di", "Dan"], kunciIdx: 2, kunciText: "Di", indikator: "Penggunaan kata depan yang tepat." }
             ],
             "Bahasa Inggris": [
-                { soal: "Choose the correct greeting expression when you meet someone at 08.00 AM in the morning:", opsi: ["Good night", "Good afternoon", "Good morning", "Good evening"], kunci: "C", indikator: "Memilih ungkapan salam berdasarkan waktu." },
-                { soal: "What is the English translation of 'Buku saya ada di atas meja'?", opsi: ["My book is under the table", "My book is on the table", "My book is in the bag", "My book is behind the chair"], kunci: "B", indikator: "Menerjemahkan preposisi tempat." },
-                { soal: "Ani : 'Thank you very much for your help.' / Budi : '...'", opsi: ["I am sorry", "You are welcome", "Good bye", "Nice to meet you"], kunci: "B", indikator: "Menanggapi ungkapan terima kasih." },
-                { soal: "The animal that produces milk and eats grass is a...", opsi: ["Cat", "Cow", "Tiger", "Fish"], kunci: "B", indikator: "Mengidentifikasi kosakata nama hewan." },
-                { soal: "He ... to school every day by bicycle.", opsi: ["go", "goes", "going", "gone"], kunci: "B", indikator: "Menggunakan Simple Present Tense." }
+                { soal: "Choose the correct greeting expression when you meet someone at 08.00 AM in the morning:", opsi: ["Good night", "Good afternoon", "Good morning", "Good evening"], kunciIdx: 2, kunciText: "Good morning", indikator: "Memilih ungkapan salam berdasarkan waktu." },
+                { soal: "What is the English translation of 'Buku saya ada di atas meja'?", opsi: ["My book is under the table", "My book is on the table", "My book is in the bag", "My book is behind the chair"], kunciIdx: 1, kunciText: "My book is on the table", indikator: "Menerjemahkan preposisi tempat." },
+                { soal: "Ani : 'Thank you very much for your help.' / Budi : '...'", opsi: ["I am sorry", "You are welcome", "Good bye", "Nice to meet you"], kunciIdx: 1, kunciText: "You are welcome", indikator: "Menanggapi ungkapan terima kasih." },
+                { soal: "The animal that produces milk and eats grass is a...", opsi: ["Cat", "Cow", "Tiger", "Fish"], kunciIdx: 1, kunciText: "Cow", indikator: "Mengidentifikasi kosakata nama hewan." },
+                { soal: "He ... to school every day by bicycle.", opsi: ["go", "goes", "going", "gone"], kunciIdx: 1, kunciText: "goes", indikator: "Menggunakan Simple Present Tense." }
             ],
             "Ilmu Pengetahuan Sosial (IPS)": [
-                { soal: "Letak suatu wilayah di permukaan bumi berdasarkan garis lintang dan garis bujur disebut letak...", opsi: ["Geografis", "Astronomis", "Geologis", "Ekonomis"], kunci: "B", indikator: "Mengidentifikasi definisi letak astronomis." },
-                { soal: "Segala bentuk kegiatan manusia untuk menghasilkan atau menambah nilai guna barang dan jasa disebut...", opsi: ["Konsumsi", "Distribusi", "Produksi", "Investasi"], kunci: "C", indikator: "Menjelaskan konsep kegiatan produksi." },
-                { soal: "Perpindahan penduduk dari desa ke kota dalam satu negara dinamakan...", opsi: ["Urbanisasi", "Transmigrasi", "Emigrasi", "Imigrasi"], kunci: "A", indikator: "Menjelaskan definisi urbanisasi." },
-                { soal: "Lapisan kulit bumi paling luar yang tersusun atas batuan padat disebut...", opsi: ["Barisfer", "Selimut bumi", "Litosfer", "Astenosfer"], kunci: "C", indikator: "Mengidentifikasi lapisan litosfer bumi." },
-                { soal: "Sumber daya alam yang dapat diperbaharui contohnya adalah...", opsi: ["Minyak bumi", "Batubara", "Air dan Tumbuhan", "Gas alam"], kunci: "C", indikator: "Membedakan sumber daya alam." }
+                { soal: "Letak suatu wilayah di permukaan bumi berdasarkan garis lintang dan garis bujur disebut letak...", opsi: ["Geografis", "Astronomis", "Geologis", "Ekonomis"], kunciIdx: 1, kunciText: "Astronomis", indikator: "Mengidentifikasi definisi letak astronomis." },
+                { soal: "Segala bentuk kegiatan manusia untuk menghasilkan atau menambah nilai guna barang dan jasa disebut...", opsi: ["Konsumsi", "Distribusi", "Produksi", "Investasi"], kunciIdx: 2, kunciText: "Produksi", indikator: "Menjelaskan konsep kegiatan produksi." },
+                { soal: "Perpindahan penduduk dari desa ke kota dalam satu negara dinamakan...", opsi: ["Urbanisasi", "Transmigrasi", "Emigrasi", "Imigrasi"], kunciIdx: 0, kunciText: "Urbanisasi", indikator: "Menjelaskan definisi urbanisasi." },
+                { soal: "Lapisan kulit bumi paling luar yang tersusun atas batuan padat disebut...", opsi: ["Barisfer", "Selimut bumi", "Litosfer", "Astenosfer"], kunciIdx: 2, kunciText: "Litosfer", indikator: "Mengidentifikasi lapisan litosfer bumi." },
+                { soal: "Sumber daya alam yang dapat diperbaharui contohnya adalah...", opsi: ["Minyak bumi", "Batubara", "Air dan Tumbuhan", "Gas alam"], kunciIdx: 2, kunciText: "Air dan Tumbuhan", indikator: "Membedakan sumber daya alam." }
             ],
             "PPKn": [
-                { soal: "Pancasila berkedudukan sebagai dasar negara dan pandangan hidup bangsa. Simbol Sila ke-3 adalah...", opsi: ["Bintang", "Rantai", "Pohon Beringin", "Kepala Banteng"], kunci: "C", indikator: "Mengidentifikasi lambang sila Pancasila." },
-                { soal: "Undang-Undang Dasar Negara Republik Indonesia Tahun 1945 disahkan pada tanggal...", opsi: ["17 Agustus 1945", "18 Agustus 1945", "1 Juni 1945", "29 Mei 1945"], kunci: "B", indikator: "Mengetahui sejarah pengesahan UUD 1945." },
-                { soal: "Sikap menghormati adanya perbedaan suku, agama, ras, dan antargolongan disebut...", opsi: ["Etnnosentrisme", "Toleransi", "Chauvinisme", "Individualisme"], kunci: "B", indikator: "Menjelaskan arti penting toleransi." },
-                { soal: "Norma yang sanksinya berasal dari hati nurani berupa penyesalan adalah norma...", opsi: ["Hukum", "Kesopanan", "Kesusilaan", "Agama"], kunci: "C", indikator: "Membedakan sanksi norma kesusilaan." },
-                { soal: "Alat pemersatu bangsa Indonesia yang resmi dan diakui di seluruh dunia adalah...", opsi: ["Bahasa Daerah", "Bendera Merah Putih", "Lagu Daerah", "Pakaian Adat"], kunci: "B", indikator: "Mengidentifikasi simbol pemersatu." }
+                { soal: "Pancasila berkedudukan sebagai dasar negara dan pandangan hidup bangsa. Simbol Sila ke-3 adalah...", opsi: ["Bintang", "Rantai", "Pohon Beringin", "Kepala Banteng"], kunciIdx: 2, kunciText: "Pohon Beringin", indikator: "Mengidentifikasi lambang sila Pancasila." },
+                { soal: "Undang-Undang Dasar Negara Republik Indonesia Tahun 1945 disahkan pada tanggal...", opsi: ["17 Agustus 1945", "18 Agustus 1945", "1 Juni 1945", "29 Mei 1945"], kunciIdx: 1, kunciText: "18 Agustus 1945", indikator: "Mengetahui sejarah pengesahan UUD 1945." },
+                { soal: "Sikap menghormati adanya perbedaan suku, agama, ras, dan antargolongan disebut...", opsi: ["Etnnosentrisme", "Toleransi", "Chauvinisme", "Individualisme"], kunciIdx: 1, kunciText: "Toleransi", indikator: "Menjelaskan arti penting toleransi." },
+                { soal: "Norma yang sanksinya berasal dari hati nurani berupa penyesalan adalah norma...", opsi: ["Hukum", "Kesopanan", "Kesusilaan", "Agama"], kunciIdx: 2, kunciText: "Kesusilaan", indikator: "Membedakan sanksi norma kesusilaan." },
+                { soal: "Alat pemersatu bangsa Indonesia yang resmi dan diakui di seluruh dunia adalah...", opsi: ["Bahasa Daerah", "Bendera Merah Putih", "Lagu Daerah", "Pakaian Adat"], kunciIdx: 1, kunciText: "Bendera Merah Putih", indikator: "Mengidentifikasi simbol pemersatu." }
             ],
             "Pendidikan Agama": [
-                { soal: "Pondasi utama dalam ajaran Islam yang menjadi Rukun Islam pertama adalah...", opsi: ["Melaksanakan Shalat", "Mengucapkan Dua Kalimat Syahadat", "Menunaikan Zakat", "Menjalankan Puasa"], kunci: "B", indikator: "Menyebutkan urutan rukun Islam." },
-                { soal: "Malaikat yang bertugas menyampaikan wahyu kepada para nabi dan rasul adalah...", opsi: ["Malaikat Mikail", "Malaikat Israfil", "Malaikat Jibril", "Malaikat Izrail"], kunci: "C", indikator: "Menyebutkan tugas malaikat Allah." },
-                { soal: "Kitab suci yang diturunkan kepada Nabi Musa AS adalah...", opsi: ["Injil", "Zabur", "Taurat", "Al-Qur'an"], kunci: "C", indikator: "Menyebutkan nama kitab suci." },
-                { soal: "Sifat wajib bagi rasul yang berarti 'selalu benar dan jujur' adalah...", opsi: ["Amanah", "Tabligh", "Fathanah", "Shiddiq"], kunci: "D", indikator: "Menjelaskan sifat wajib rasul." },
-                { soal: "Perilaku terpuji dengan selalu menepati janji dan berkata benar disebut sifat...", opsi: ["Jujur", "Amanah", "Istiqamah", "Fathanah"], kunci: "A", indikator: "Mengimplementasikan perilaku terpuji." }
+                { soal: "Pondasi utama dalam ajaran Islam yang menjadi Rukun Islam pertama adalah...", opsi: ["Melaksanakan Shalat", "Mengucapkan Dua Kalimat Syahadat", "Menunaikan Zakat", "Menjalankan Puasa"], kunciIdx: 1, kunciText: "Mengucapkan Dua Kalimat Syahadat", indikator: "Menyebutkan urutan rukun Islam." },
+                { soal: "Malaikat yang bertugas menyampaikan wahyu kepada para nabi dan rasul adalah...", opsi: ["Malaikat Mikail", "Malaikat Israfil", "Malaikat Jibril", "Malaikat Izrail"], kunciIdx: 2, kunciText: "Malaikat Jibril", indikator: "Menyebutkan tugas malaikat Allah." },
+                { soal: "Kitab suci yang diturunkan kepada Nabi Musa AS adalah...", opsi: ["Injil", "Zabur", "Taurat", "Al-Qur'an"], kunciIdx: 2, kunciText: "Taurat", indikator: "Menyebutkan nama kitab suci." },
+                { soal: "Sifat wajib bagi rasul yang berarti 'selalu benar dan jujur' adalah...", opsi: ["Amanah", "Tabligh", "Fathanah", "Shiddiq"], kunciIdx: 3, kunciText: "Shiddiq", indikator: "Menjelaskan sifat wajib rasul." },
+                { soal: "Perilaku terpuji dengan selalu menepati janji dan berkata benar disebut sifat...", opsi: ["Jujur", "Amanah", "Istiqamah", "Fathanah"], kunciIdx: 0, kunciText: "Jujur", indikator: "Mengimplementasikan perilaku terpuji." }
             ]
         };
+
+        const abjad = ["A", "B", "C", "D"];
 
         function generateSoalAI() {
             const mapelVal = document.getElementById('mapel').value;
@@ -300,58 +335,54 @@
 
             const sourceSoal = bankSoalMaster[mapelVal] || bankSoalMaster["Informatika ( TIK )"];
 
-            function buildArray(count, typeName) {
+            function buildArray(count) {
                 let arr = [];
                 for (let i = 0; i < count; i++) {
                     let base = sourceSoal[i % sourceSoal.length];
                     arr.push({
-                        no: i + 1,
-                        soal: `${base.soal}`,
+                        soal: base.soal,
                         opsi: base.opsi,
-                        kunci: base.kunci,
+                        kunciLetter: abjad[base.kunciIdx],
+                        kunciText: base.kunciText,
                         indikator: base.indikator
                     });
                 }
                 return arr;
             }
 
-            const dataPG = buildArray(jmlPG, "PG");
-            const dataPGK = buildArray(jmlPGK, "PG Kompleks");
-            const dataJodoh = buildArray(jmlJodoh, "Menjodohkan");
-            const dataIsian = buildArray(jmlIsian, "Isian");
-            const dataUraian = buildArray(jmlUraian, "Uraian");
+            const dataPG = buildArray(jmlPG);
+            const dataPGK = buildArray(jmlPGK);
+            const dataJodoh = buildArray(jmlJodoh);
+            const dataIsian = buildArray(jmlIsian);
+            const dataUraian = buildArray(jmlUraian);
 
             let globalNo = 1;
             
-            // 1. Render PG
+            // Render Naskah
             let htmlPG = "";
             dataPG.forEach((item) => {
                 htmlPG += `<div class="mb-3"><p class="font-medium text-gray-900 mb-1">${globalNo++}. ${item.soal}</p><div class="grid grid-cols-2 gap-x-4 gap-y-1 ml-4 text-gray-700"><div>A. ${item.opsi[0]}</div><div>B. ${item.opsi[1]}</div><div>C. ${item.opsi[2]}</div><div>D. ${item.opsi[3]}</div></div></div>`;
             });
             document.getElementById('container-soal-pg').innerHTML = htmlPG || "<p class='text-gray-400 italic'>Tidak ada soal Pilihan Ganda.</p>";
 
-            // 2. Render PG Kompleks
             let htmlPGK = "";
             dataPGK.forEach((item) => {
-                htmlPGK += `<div class="mb-3"><p class="font-medium text-gray-900 mb-1">${globalNo++}. ${item.soal} <span class="text-xs text-blue-600 font-semibold">(Pilih lebih dari satu jawaban yang benar)</span></p><div class="ml-4 space-y-1 text-gray-700"><div>[ ] A. ${item.opsi[0]}</div><div>[ ] B. ${item.opsi[1]}</div><div>[ ] C. ${item.opsi[2]}</div><div>[ ] D. ${item.opsi[3]}</div></div></div>`;
+                htmlPGK += `<div class="mb-3"><p class="font-medium text-gray-900 mb-1">${globalNo++}. ${item.soal} <span class="text-xs text-blue-600 font-semibold">(Pilih dua jawaban benar)</span></p><div class="ml-4 space-y-1 text-gray-700"><div>[ ] A. ${item.opsi[0]}</div><div>[ ] B. ${item.opsi[1]}</div><div>[ ] C. ${item.opsi[2]}</div><div>[ ] D. ${item.opsi[3]}</div></div></div>`;
             });
             document.getElementById('container-soal-pgk').innerHTML = htmlPGK || "<p class='text-gray-400 italic'>Tidak ada soal PG Kompleks.</p>";
 
-            // 3. Render Menjodohkan
             let htmlJodoh = "";
             dataJodoh.forEach((item) => {
-                htmlJodoh += `<div class="mb-3"><p class="font-medium text-gray-900 mb-1">${globalNo++}. Pasangkan pernyataan berikut dengan opsi yang sesuai: ${item.soal}</p><div class="ml-4 text-gray-700 text-xs bg-gray-50 p-2 rounded border">Titik pasang / mencocokkan otomatis tersusun berdasarkan kisi-kisi materi.</div></div>`;
+                htmlJodoh += `<div class="mb-3"><p class="font-medium text-gray-900 mb-1">${globalNo++}. Pasangkan pernyataan berikut dengan opsi yang paling tepat: ${item.soal}</p><div class="ml-4 text-gray-700 text-xs bg-gray-50 p-2 rounded border">Titik mencocokkan tersusun berdasarkan matriks materi.</div></div>`;
             });
             document.getElementById('container-soal-jodoh').innerHTML = htmlJodoh || "<p class='text-gray-400 italic'>Tidak ada soal Menjodohkan.</p>";
 
-            // 4. Render Isian Singkat
             let htmlIsian = "";
             dataIsian.forEach((item) => {
                 htmlIsian += `<div class="mb-3"><p class="font-medium text-gray-900 mb-1">${globalNo++}. ${item.soal}</p><div class="ml-4 text-gray-500 italic">.......................................................................................................</div></div>`;
             });
             document.getElementById('container-soal-isian').innerHTML = htmlIsian || "<p class='text-gray-400 italic'>Tidak ada soal Isian Singkat.</p>";
 
-            // 5. Render Uraian
             let htmlUraian = "";
             dataUraian.forEach((item) => {
                 htmlUraian += `<div class="mb-3"><p class="font-medium text-gray-900 mb-1">${globalNo++}. Jelaskan dan uraikan secara rinci mengenai: ${item.soal}</p><div class="ml-4 h-16 border border-dashed border-gray-300 rounded bg-gray-50 flex items-center justify-center text-xs text-gray-400">Kolom Lembar Jawaban Uraian</div></div>`;
@@ -361,17 +392,80 @@
             // Render Kisi-Kisi
             let containerKisi = document.getElementById('container-kisi-kisi');
             containerKisi.innerHTML = "";
-            let combinedAll = [...dataPG, ...dataPGK, ...dataJodoh, ...dataIsian, ...dataUraian];
+            let combinedAll = [
+                ...dataPG.map(x => ({...x, bentuk: "Pilihan Ganda"})),
+                ...dataPGK.map(x => ({...x, bentuk: "PG Kompleks"})),
+                ...dataJodoh.map(x => ({...x, bentuk: "Menjodohkan"})),
+                ...dataIsian.map(x => ({...x, bentuk: "Isian Singkat"})),
+                ...dataUraian.map(x => ({...x, bentuk: "Uraian / Essay"}))
+            ];
+            
             combinedAll.forEach((item, idx) => {
-                containerKisi.innerHTML += `<tr class="border-b border-gray-200"><td class="border border-gray-300 p-2 text-center">${idx + 1}</td><td class="border border-gray-300 p-2">${mapelVal}</td><td class="border border-gray-300 p-2">${materiVal}</td><td class="border border-gray-300 p-2">${item.indikator}</td><td class="border border-gray-300 p-2 text-center">Variasi Asesmen</td></tr>`;
+                containerKisi.innerHTML += `<tr class="border-b border-gray-200"><td class="border border-gray-300 p-2 text-center">${idx + 1}</td><td class="border border-gray-300 p-2">${mapelVal}</td><td class="border border-gray-300 p-2">${materiVal}</td><td class="border border-gray-300 p-2">${item.indikator}</td><td class="border border-gray-300 p-2 text-center">${item.bentuk}</td></tr>`;
             });
 
-            // Render Kunci Jawaban
-            let containerKunci = document.getElementById('container-kunci');
-            containerKunci.innerHTML = "";
-            combinedAll.forEach((item, idx) => {
-                containerKunci.innerHTML += `<div class="p-2 border-b"><strong>Soal No. ${idx + 1}:</strong> Kunci / Alternatif Jawaban: <span class="text-blue-600 font-bold">${item.kunci}</span></div>`;
-            });
+            // Render Kunci Jawaban Terstruktur per Bentuk Soal
+            let noRunning = 1;
+
+            // Kunci PG
+            let elKunciPG = document.getElementById('kunci-pg');
+            if (dataPG.length > 0) {
+                let htmlKunciPG = "";
+                dataPG.forEach(item => {
+                    htmlKunciPG += `<div class="p-2 bg-gray-50 border rounded font-semibold text-center">${noRunning++}. <span class="text-blue-700 font-bold">${item.kunciLetter}</span> (${item.kunciText})</div>`;
+                });
+                elKunciPG.innerHTML = htmlKunciPG;
+            } else {
+                elKunciPG.innerHTML = "<p class='text-gray-400 italic text-xs col-span-5'>-</p>";
+            }
+
+            // Kunci PGK
+            let elKunciPGK = document.getElementById('kunci-pgk');
+            if (dataPGK.length > 0) {
+                let htmlKunciPGK = "";
+                dataPGK.forEach(item => {
+                    htmlKunciPGK += `<div class="p-2 border-b"><strong>No. ${noRunning++}:</strong> Jawaban Benar = <span class="text-blue-700 font-bold">${item.kunciLetter} (${item.kunciText})</span> dan Opsi Pelengkap</div>`;
+                });
+                elKunciPGK.innerHTML = htmlKunciPGK;
+            } else {
+                elKunciPGK.innerHTML = "<p class='text-gray-400 italic text-xs'>-</p>";
+            }
+
+            // Kunci Menjodohkan
+            let elKunciJodoh = document.getElementById('kunci-jodoh');
+            if (dataJodoh.length > 0) {
+                let htmlKunciJodoh = "";
+                dataJodoh.forEach(item => {
+                    htmlKunciJodoh += `<div class="p-2 border-b"><strong>No. ${noRunning++}:</strong> Pasangan Tepat = <span class="text-blue-700 font-bold">${item.kunciText}</span></div>`;
+                });
+                elKunciJodoh.innerHTML = htmlKunciJodoh;
+            } else {
+                elKunciJodoh.innerHTML = "<p class='text-gray-400 italic text-xs'>-</p>";
+            }
+
+            // Kunci Isian
+            let elKunciIsian = document.getElementById('kunci-isian');
+            if (dataIsian.length > 0) {
+                let htmlKunciIsian = "";
+                dataIsian.forEach(item => {
+                    htmlKunciIsian += `<div class="p-2 border-b"><strong>No. ${noRunning++}:</strong> Kata Kunci Jawaban = <span class="text-blue-700 font-bold">${item.kunciText}</span></div>`;
+                });
+                elKunciIsian.innerHTML = htmlKunciIsian;
+            } else {
+                elKunciIsian.innerHTML = "<p class='text-gray-400 italic text-xs'>-</p>";
+            }
+
+            // Kunci Uraian
+            let elKunciUraian = document.getElementById('kunci-uraian');
+            if (dataUraian.length > 0) {
+                let htmlKunciUraian = "";
+                dataUraian.forEach(item => {
+                    htmlKunciUraian += `<div class="p-3 border rounded bg-gray-50/70"><strong>No. ${noRunning++}:</strong> Pembahasan / Indikator Jawaban: <span class="text-blue-700 font-medium">${item.kunciText}</span> (Skor Maksimal: 4)</div>`;
+                });
+                elKunciUraian.innerHTML = htmlKunciUraian;
+            } else {
+                elKunciUraian.innerHTML = "<p class='text-gray-400 italic text-xs'>-</p>";
+            }
         }
 
         function switchView(viewName) {

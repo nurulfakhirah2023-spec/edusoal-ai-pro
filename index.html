@@ -45,7 +45,6 @@
             </h2>
 
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-                <!-- Kurikulum -->
                 <div>
                     <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Kurikulum</label>
                     <select id="kurikulum" class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none">
@@ -53,8 +52,6 @@
                         <option value="Kurikulum 2013 (K13)">Kurikulum 2013 / K13 (KD/Indikator)</option>
                     </select>
                 </div>
-
-                <!-- Mata Pelajaran -->
                 <div>
                     <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Mata Pelajaran</label>
                     <select id="mapel" class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none">
@@ -68,8 +65,6 @@
                         <option value="Pendidikan Agama">Pendidikan Agama</option>
                     </select>
                 </div>
-
-                <!-- Kelas / Semester -->
                 <div>
                     <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Kelas / Semester</label>
                     <select id="kelas" class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none">
@@ -78,8 +73,6 @@
                         <option value="Kelas IX / Ganjil">Kelas IX / Ganjil</option>
                     </select>
                 </div>
-
-                <!-- Tahun Ajaran -->
                 <div>
                     <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Tahun Ajaran</label>
                     <input type="text" id="tahun" value="2026/2027" class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none">
@@ -87,13 +80,10 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                <!-- Materi -->
                 <div>
                     <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Materi / Bab</label>
                     <input type="text" id="materi" value="BAB. Perangkat & Sistem Pembelajaran" class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none">
                 </div>
-
-                <!-- CP / KD -->
                 <div>
                     <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Capaian Pembelajaran (CP) / KD</label>
                     <input type="text" id="cp" value="Peserta didik mampu memahami dan menguasai materi secara mendalam." class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none">
@@ -106,28 +96,27 @@
                 <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
                     <div>
                         <span class="text-xs text-gray-500 block mb-1">Pilihan Ganda (PG)</span>
-                        <input type="number" id="jml-pg" value="5" min="1" max="20" class="w-full px-3 py-2 border rounded-lg text-sm text-center">
+                        <input type="number" id="jml-pg" value="5" min="0" max="20" class="w-full px-3 py-2 border rounded-lg text-sm text-center">
                     </div>
                     <div>
                         <span class="text-xs text-gray-500 block mb-1">PG Kompleks</span>
-                        <input type="number" id="jml-pgk" value="0" min="0" max="10" class="w-full px-3 py-2 border rounded-lg text-sm text-center">
+                        <input type="number" id="jml-pgk" value="5" min="0" max="20" class="w-full px-3 py-2 border rounded-lg text-sm text-center">
                     </div>
                     <div>
                         <span class="text-xs text-gray-500 block mb-1">Menjodohkan</span>
-                        <input type="number" id="jml-jodoh" value="0" min="0" max="10" class="w-full px-3 py-2 border rounded-lg text-sm text-center">
+                        <input type="number" id="jml-jodoh" value="5" min="0" max="20" class="w-full px-3 py-2 border rounded-lg text-sm text-center">
                     </div>
                     <div>
                         <span class="text-xs text-gray-500 block mb-1">Isian Singkat</span>
-                        <input type="number" id="jml-isian" value="0" min="0" max="10" class="w-full px-3 py-2 border rounded-lg text-sm text-center">
+                        <input type="number" id="jml-isian" value="5" min="0" max="20" class="w-full px-3 py-2 border rounded-lg text-sm text-center">
                     </div>
                     <div>
                         <span class="text-xs text-gray-500 block mb-1">Uraian / Essay</span>
-                        <input type="number" id="jml-uraian" value="0" min="0" max="10" class="w-full px-3 py-2 border rounded-lg text-sm text-center">
+                        <input type="number" id="jml-uraian" value="5" min="0" max="20" class="w-full px-3 py-2 border rounded-lg text-sm text-center">
                     </div>
                 </div>
             </div>
 
-            <!-- Button Generate Utama -->
             <div>
                 <button onclick="generateSoalAI()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-lg text-sm transition flex items-center justify-center gap-2 shadow-sm">
                     <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Soal, Kisi-Kisi & Kunci Jawaban (AI)
@@ -138,7 +127,6 @@
         <!-- Panel Output Hasil -->
         <div id="output-section" class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden print-container">
             
-            <!-- Toolbar Ekspor & Navigasi Hasil -->
             <div class="bg-gray-50 border-b p-4 flex flex-col sm:flex-row justify-between items-center gap-3 no-print">
                 <div class="flex space-x-4 border-b sm:border-0 w-full sm:w-auto">
                     <button onclick="switchView('naskah')" id="tab-naskah" class="tab-btn active font-semibold text-blue-600 border-b-2 border-blue-600 pb-2 text-sm">
@@ -163,10 +151,9 @@
             </div>
 
             <!-- Area Konten Utama Dokumen -->
-            <div id="document-content" class="p-8 md:p-12">
+            <div id="document-content" class="p-8 md:p-12 space-y-6">
                 
-                <!-- Header Dokumen Identitas -->
-                <div class="border-2 border-gray-100 p-4 rounded-lg bg-gray-50/50 mb-6 text-sm grid grid-cols-2 gap-y-2 gap-x-4">
+                <div class="border-2 border-gray-100 p-4 rounded-lg bg-gray-50/50 text-sm grid grid-cols-2 gap-y-2 gap-x-4">
                     <div><span class="font-semibold">Mata Pelajaran:</span> <span id="lbl-mapel">Informatika ( TIK )</span></div>
                     <div><span class="font-semibold">Kurikulum:</span> <span id="lbl-kurikulum">Kurikulum Merdeka (CP/TP)</span></div>
                     <div><span class="font-semibold">Kelas / Semester:</span> <span id="lbl-kelas">Kelas VII / Ganjil</span></div>
@@ -174,7 +161,7 @@
                     <div class="col-span-2"><span class="font-semibold">Materi:</span> <span id="lbl-materi">BAB. Perangkat & Sistem Pembelajaran</span></div>
                 </div>
 
-                <div class="text-center font-bold text-base md:text-lg mb-6 tracking-wide underline">
+                <div class="text-center font-bold text-base md:text-lg tracking-wide underline">
                     NASKAH SOAL ASESMEN / UJIAN
                 </div>
 
@@ -182,9 +169,23 @@
                 <div id="view-naskah" class="space-y-6">
                     <div>
                         <h3 class="font-bold text-sm text-blue-900 mb-3 uppercase tracking-wider">A. PILIHAN GANDA</h3>
-                        <div id="container-soal-pg" class="space-y-4 text-sm">
-                            <!-- Soal dinamis dirender di sini -->
-                        </div>
+                        <div id="container-soal-pg" class="space-y-4 text-sm"></div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm text-blue-900 mb-3 uppercase tracking-wider">B. PILIHAN GANDA KOMPLEKS</h3>
+                        <div id="container-soal-pgk" class="space-y-4 text-sm"></div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm text-blue-900 mb-3 uppercase tracking-wider">C. MENJODOHKAN</h3>
+                        <div id="container-soal-jodoh" class="space-y-4 text-sm"></div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm text-blue-900 mb-3 uppercase tracking-wider">D. ISIAN SINGKAT</h3>
+                        <div id="container-soal-isian" class="space-y-4 text-sm"></div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm text-blue-900 mb-3 uppercase tracking-wider">E. URAIAN / ESSAY</h3>
+                        <div id="container-soal-uraian" class="space-y-4 text-sm"></div>
                     </div>
                 </div>
 
@@ -197,14 +198,12 @@
                                 <tr class="bg-gray-100 border-b border-gray-300">
                                     <th class="border border-gray-300 p-2 text-center">No</th>
                                     <th class="border border-gray-300 p-2">Mata Pelajaran</th>
-                                    <th class="border border-gray-300 p-2">Capaian Pembelajaran / Materi</th>
+                                    <th class="border border-gray-300 p-2">Materi / Bab</th>
                                     <th class="border border-gray-300 p-2">Indikator Soal</th>
-                                    <th class="border border-gray-300 p-2 text-center">Bentuk</th>
+                                    <th class="border border-gray-300 p-2 text-center">Bentuk Soal</th>
                                 </tr>
                             </thead>
-                            <tbody id="container-kisi-kisi">
-                                <!-- Kisi-kisi dinamis -->
-                            </tbody>
+                            <tbody id="container-kisi-kisi"></tbody>
                         </table>
                     </div>
                 </div>
@@ -212,9 +211,7 @@
                 <!-- View 3: Kunci Jawaban -->
                 <div id="view-kunci" class="hidden">
                     <h3 class="font-bold text-sm text-blue-900 mb-3 uppercase tracking-wider">KUNCI JAWABAN & PEDOMAN PENSKORAN</h3>
-                    <div id="container-kunci" class="space-y-2 text-sm">
-                        <!-- Kunci jawaban dinamis -->
-                    </div>
+                    <div id="container-kunci" class="space-y-3 text-sm"></div>
                 </div>
 
             </div>
@@ -223,7 +220,6 @@
 
     <!-- Logic JavaScript -->
     <script>
-        // Database Bank Soal Master untuk Setiap Mata Pelajaran
         const bankSoalMaster = {
             "Informatika ( TIK )": [
                 { soal: "Perangkat keras komputer yang berfungsi untuk memasukkan data atau perintah ke dalam sistem komputer adalah...", opsi: ["Input Device", "Output Device", "Processing Device", "Storage Device"], kunci: "A", indikator: "Mengidentifikasi perangkat masukan (input device) pada komputer." },
@@ -272,7 +268,7 @@
                 { soal: "Undang-Undang Dasar Negara Republik Indonesia Tahun 1945 disahkan oleh panitia persiapan kemerdekaan pada tanggal...", opsi: ["17 Agustus 1945", "18 Agustus 1945", "1 Juni 1945", "29 Mei 1945"], kunci: "B", indikator: "Mengetahui sejarah pengesahan UUD NRI 1945." },
                 { soal: "Sikap menghormati adanya perbedaan suku, agama, ras, dan antargolongan di masyarakat disebut...", opsi: ["Etnnosentrisme", "Toleransi", "Chauvinisme", "Individualisme"], kunci: "B", indikator: "Menjelaskan arti penting sikap toleransi dalam keberagaman." },
                 { soal: "Norma yang sanksinya berasal dari hati nurani berupa penyesalan adalah norma...", opsi: ["Hukum", "Kesopanan", "Kesusilaan", "Agama"], kunci: "C", indikator: "Membedakan sanksi norma kesusilaan." },
-                { soal: "Alat pemersatu bangsa Indonesia yang resmi dan diakui di seluruh dunia adalah...", opsi: ["Bahasa Daerah", "Bendera Merah Putih", "Lagu Daerah", "Pakaian Adat"], kunci: "B", identikator: "Mengidentifikasi simbol pemersatu negara." }
+                { soal: "Alat pemersatu bangsa Indonesia yang resmi dan diakui di seluruh dunia adalah...", opsi: ["Bahasa Daerah", "Bendera Merah Putih", "Lagu Daerah", "Pakaian Adat"], kunci: "B", indikator: "Mengidentifikasi simbol pemersatu negara." }
             ],
             "Pendidikan Agama": [
                 { soal: "Pondasi utama dalam ajaran Islam yang menjadi Rukun Islam pertama adalah...", opsi: ["Melaksanakan Shalat", "Mengucapkan Dua Kalimat Syahadat", "Menunaikan Zakat", "Menjalankan Puasa"], kunci: "B", indikator: "Menyebutkan urutan rukun Islam." },
@@ -283,84 +279,103 @@
             ]
         };
 
-        // Fungsi Utama saat tombol "Generate Soal" diklik
         function generateSoalAI() {
             const mapelVal = document.getElementById('mapel').value;
             const kurikulumVal = document.getElementById('kurikulum').value;
             const kelasVal = document.getElementById('kelas').value;
             const tahunVal = document.getElementById('tahun').value;
             const materiVal = document.getElementById('materi').value;
-            const cpVal = document.getElementById('cp').value;
 
-            // Ambil jumlah soal yang diminta dari input angka user
-            const jumlahPG = parseInt(document.getElementById('jml-pg').value) || 5;
+            const jmlPG = parseInt(document.getElementById('jml-pg').value) || 0;
+            const jmlPGK = parseInt(document.getElementById('jml-pgk').value) || 0;
+            const jmlJodoh = parseInt(document.getElementById('jml-jodoh').value) || 0;
+            const jmlIsian = parseInt(document.getElementById('jml-isian').value) || 0;
+            const jmlUraian = parseInt(document.getElementById('jml-uraian').value) || 0;
 
-            // Update Label Identitas Dokumen
             document.getElementById('lbl-mapel').innerText = mapelVal;
             document.getElementById('lbl-kurikulum').innerText = kurikulumVal;
             document.getElementById('lbl-kelas').innerText = kelasVal;
             document.getElementById('lbl-tahun').innerText = tahunVal;
             document.getElementById('lbl-materi').innerText = materiVal;
 
-            // Ambil Master Data Soal Sesuai Mapel
             const sourceSoal = bankSoalMaster[mapelVal] || bankSoalMaster["Informatika ( TIK )"];
 
-            // Buat array soal sebanyak yang diminta guru (jika melebihi master data, otomatis di-looping/digandakan dengan variasi nomor)
-            let daftarSoal = [];
-            for (let i = 0; i < jumlahPG; i++) {
-                let baseItem = sourceSoal[i % sourceSoal.length]; // Mengambil berputar jika melebihi panjang data
-                daftarSoal.push({
-                    soal: baseItem.soal,
-                    opsi: baseItem.opsi,
-                    kunci: baseItem.kunci,
-                    indikator: baseItem.indikator
-                });
+            // Helper builder array dinamis
+            function buildArray(count, typeName) {
+                let arr = [];
+                for (let i = 0; i < count; i++) {
+                    let base = sourceSoal[i % sourceSoal.length];
+                    arr.push({
+                        no: i + 1,
+                        soal: `[${typeName}] ${base.soal}`,
+                        opsi: base.opsi,
+                        kunci: base.kunci,
+                        indikator: base.indikator
+                    });
+                }
+                return arr;
             }
 
-            // 1. Render Naskah Soal PG
-            const containerPG = document.getElementById('container-soal-pg');
-            containerPG.innerHTML = "";
-            
-            daftarSoal.forEach((item, index) => {
-                const htmlSoal = `
-                    <div class="mb-3">
-                        <p class="font-medium text-gray-900 mb-1">${index + 1}. ${item.soal}</p>
-                        <div class="grid grid-cols-2 gap-x-4 gap-y-1 ml-4 text-gray-700">
-                            <div>A. ${item.opsi[0]}</div>
-                            <div>B. ${item.opsi[1]}</div>
-                            <div>C. ${item.opsi[2]}</div>
-                            <div>D. ${item.opsi[3]}</div>
-                        </div>
-                    </div>
-                `;
-                containerPG.innerHTML += htmlSoal;
-            });
+            const dataPG = buildArray(jmlPG, "PG");
+            const dataPGK = buildArray(jmlPGK, "PG Kompleks");
+            const dataJodoh = buildArray(jmlJodoh, "Menjodohkan");
+            const dataIsian = buildArray(jmlIsian, "Isian");
+            const dataUraian = buildArray(jmlUraian, "Uraian");
 
-            // 2. Render Matriks Kisi-Kisi
-            const containerKisi = document.getElementById('container-kisi-kisi');
+            // 1. Render Naskah Soal
+            let globalNo = 1;
+            
+            // Render PG
+            let htmlPG = "";
+            dataPG.forEach((item) => {
+                htmlPG += `<div class="mb-3"><p class="font-medium text-gray-900 mb-1">${globalNo++}. ${item.soal}</p><div class="grid grid-cols-2 gap-x-4 gap-y-1 ml-4 text-gray-700"><div>A. ${item.opsi[0]}</div><div>B. ${item.opsi[1]}</div><div>C. ${item.opsi[2]}</div><div>D. ${item.opsi[3]}</div></div></div>`;
+            });
+            document.getElementById('container-soal-pg').innerHTML = htmlPG || "<p class='text-gray-400 italic'>Tidak ada soal Pilihan Ganda.</p>";
+
+            // Render PG Kompleks
+            let htmlPGK = "";
+            dataPGK.forEach((item) => {
+                htmlPGK += `<div class="mb-3"><p class="font-medium text-gray-900 mb-1">${globalNo++}. ${item.soal} <span class="text-xs text-blue-600 font-semibold">(Pilih lebih dari satu jawaban yang benar)</span></p><div class="ml-4 space-y-1 text-gray-700"><div>[ ] A. ${item.opsi[0]}</div><div>[ ] B. ${item.opsi[1]}</div><div>[ ] C. ${item.opsi[2]}</div><div>[ ] D. ${item.opsi[3]}</div></div></div>`;
+            });
+            document.getElementById('container-soal-pgk').innerHTML = htmlPGK || "<p class='text-gray-400 italic'>Tidak ada soal PG Kompleks.</p>";
+
+            // Render Menjodohkan
+            let htmlJodoh = "";
+            dataJodoh.forEach((item) => {
+                htmlJodoh += `<div class="mb-3"><p class="font-medium text-gray-900 mb-1">${globalNo++}. Pasangkan pernyataan berikut dengan opsi yang sesuai: ${item.soal}</p><div class="ml-4 text-gray-700 text-xs bg-gray-50 p-2 rounded border">Titik pasang / mencocokkan otomatis tersusun berdasarkan kisi-kisi materi.</div></div>`;
+            });
+            document.getElementById('container-soal-jodoh').innerHTML = htmlJodoh || "<p class='text-gray-400 italic'>Tidak ada soal Menjodohkan.</p>";
+
+            // Render Isian Singkat
+            let htmlIsian = "";
+            dataIsian.forEach((item) => {
+                htmlIsian += `<div class="mb-3"><p class="font-medium text-gray-900 mb-1">${globalNo++}. ${item.soal}</p><div class="ml-4 text-gray-500 italic">.......................................................................................................</div></div>`;
+            });
+            document.getElementById('container-soal-isian').innerHTML = htmlIsian || "<p class='text-gray-400 italic'>Tidak ada soal Isian Singkat.</p>";
+
+            // Render Uraian
+            let htmlUraian = "";
+            dataUraian.forEach((item) => {
+                htmlUraian += `<div class="mb-3"><p class="font-medium text-gray-900 mb-1">${globalNo++}. Jelaskan dan uraikan secara rinci mengenai: ${item.soal}</p><div class="ml-4 h-16 border border-dashed border-gray-300 rounded bg-gray-50 flex items-center justify-center text-xs text-gray-400">Kolom Lembar Jawaban Uraian</div></div>`;
+            });
+            document.getElementById('container-soal-uraian').innerHTML = htmlUraian || "<p class='text-gray-400 italic'>Tidak ada soal Uraian.</p>";
+
+            // 2. Render Kisi-Kisi
+            let containerKisi = document.getElementById('container-kisi-kisi');
             containerKisi.innerHTML = "";
-            daftarSoal.forEach((item, index) => {
-                const htmlKisi = `
-                    <tr class="border-b border-gray-200">
-                        <td class="border border-gray-300 p-2 text-center">${index + 1}</td>
-                        <td class="border border-gray-300 p-2">${mapelVal}</td>
-                        <td class="border border-gray-300 p-2">${materiVal}</td>
-                        <td class="border border-gray-300 p-2">${item.indikator}</td>
-                        <td class="border border-gray-300 p-2 text-center">Pilihan Ganda</td>
-                    </tr>
-                `;
-                containerKisi.innerHTML += htmlKisi;
+            let combinedAll = [...dataPG, ...dataPGK, ...dataJodoh, ...dataIsian, ...dataUraian];
+            combinedAll.forEach((item, idx) => {
+                containerKisi.innerHTML += `<tr class="border-b border-gray-200"><td class="border border-gray-300 p-2 text-center">${idx + 1}</td><td class="border border-gray-300 p-2">${mapelVal}</td><td class="border border-gray-300 p-2">${materiVal}</td><td class="border border-gray-300 p-2">${item.indikator}</td><td class="border border-gray-300 p-2 text-center">Variasi Asesmen</td></tr>`;
             });
 
             // 3. Render Kunci Jawaban
-            const containerKunci = document.getElementById('container-kunci');
+            let containerKunci = document.getElementById('container-kunci');
             containerKunci.innerHTML = "";
-            daftarSoal.forEach((item, index) => {
-                containerKunci.innerHTML += `<div class="p-2 border-b"><strong>Soal No. ${index + 1}:</strong> Jawaban <span class="text-blue-600 font-bold">${item.kunci}</span></div>`;
+            combinedAll.forEach((item, idx) => {
+                containerKunci.innerHTML += `<div class="p-2 border-b"><strong>Soal No. ${idx + 1}:</strong> Kunci / Alternatif Jawaban: <span class="text-blue-600 font-bold">${item.kunci}</span></div>`;
             });
         }
 
-        // Fungsi Switch Tab View (Naskah, Kisi-Kisi, Kunci)
         function switchView(viewName) {
             document.getElementById('view-naskah').classList.add('hidden');
             document.getElementById('view-kisikisi').classList.add('hidden');
@@ -383,29 +398,4 @@
             }
         }
 
-        // Ekspor ke Word (.docx)
-        function exportWord() {
-            const header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export Word</title></head><body>";
-            const footer = "</body></html>";
-            const html = header + document.getElementById('document-content').innerHTML + footer;
-
-            const blob = new Blob(['\ufeff', html], {
-                type: 'application/msword'
-            });
-            
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `Naskah_Soal_${document.getElementById('mapel').value}.doc`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-        }
-
-        // Jalankan saat pertama kali halaman dimuat
-        window.onload = function() {
-            generateSoalAI();
-        };
-    </script>
-</body>
-</html>
+        function export

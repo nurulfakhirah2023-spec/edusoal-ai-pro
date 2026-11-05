@@ -86,7 +86,7 @@
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Capaian Pembelajaran (CP) / KD</label>
-                    <input type="text" id="cp" value="Peserta didik mampu memahami nilai-nilai keimanan secara komprehensif." class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+                    <input type="text" id="cp" value="Elemen Akidah: Peserta didik memahami rukun iman." class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none">
                 </div>
             </div>
 
@@ -100,19 +100,19 @@
                     </div>
                     <div>
                         <span class="text-xs text-gray-500 block mb-1">PG Kompleks</span>
-                        <input type="number" id="jml-pgk" value="5" min="0" max="25" class="w-full px-3 py-2 border rounded-lg text-sm text-center">
+                        <input type="number" id="jml-pgk" value="0" min="0" max="25" class="w-full px-3 py-2 border rounded-lg text-sm text-center">
                     </div>
                     <div>
                         <span class="text-xs text-gray-500 block mb-1">Menjodohkan</span>
-                        <input type="number" id="jml-jodoh" value="5" min="0" max="25" class="w-full px-3 py-2 border rounded-lg text-sm text-center">
+                        <input type="number" id="jml-jodoh" value="0" min="0" max="25" class="w-full px-3 py-2 border rounded-lg text-sm text-center">
                     </div>
                     <div>
                         <span class="text-xs text-gray-500 block mb-1">Isian Singkat</span>
-                        <input type="number" id="jml-isian" value="5" min="0" max="25" class="w-full px-3 py-2 border rounded-lg text-sm text-center">
+                        <input type="number" id="jml-isian" value="0" min="0" max="25" class="w-full px-3 py-2 border rounded-lg text-sm text-center">
                     </div>
                     <div>
                         <span class="text-xs text-gray-500 block mb-1">Uraian / Essay</span>
-                        <input type="number" id="jml-uraian" value="5" min="0" max="25" class="w-full px-3 py-2 border rounded-lg text-sm text-center">
+                        <input type="number" id="jml-uraian" value="0" min="0" max="25" class="w-full px-3 py-2 border rounded-lg text-sm text-center">
                     </div>
                 </div>
             </div>
@@ -156,7 +156,7 @@
                 <div class="border-2 border-gray-100 p-4 rounded-lg bg-gray-50/50 text-sm grid grid-cols-2 gap-y-2 gap-x-4">
                     <div><span class="font-semibold">Mata Pelajaran:</span> <span id="lbl-mapel">Pendidikan Agama</span></div>
                     <div><span class="font-semibold">Kurikulum:</span> <span id="lbl-kurikulum">Kurikulum Merdeka (CP/TP)</span></div>
-                    <div><span class="font-semibold">Kelas / Semester:</span> <span id="lbl-kelas">Kelas IX / Ganjil</span></div>
+                    <div><span class="font-semibold">Kelas / Semester:</span> <span id="lbl-kelas">Kelas VII / Ganjil</span></div>
                     <div><span class="font-semibold">Tahun Ajaran:</span> <span id="lbl-tahun">2026/2027</span></div>
                     <div class="col-span-2"><span class="font-semibold">Materi:</span> <span id="lbl-materi">BAB 2. MEYAKINI HARI AKHIR DENGAN MAWASDIRI</span></div>
                 </div>
@@ -300,14 +300,13 @@
 
             const sourceSoal = bankSoalMaster[mapelVal] || bankSoalMaster["Informatika ( TIK )"];
 
-            // Helper builder array dinamis dengan perulangan aman tanpa batas max statis
             function buildArray(count, typeName) {
                 let arr = [];
                 for (let i = 0; i < count; i++) {
                     let base = sourceSoal[i % sourceSoal.length];
                     arr.push({
                         no: i + 1,
-                        soal: `${base.soal} (Variasi ${Math.floor(i / sourceSoal.length) + 1})`,
+                        soal: `${base.soal}`,
                         opsi: base.opsi,
                         kunci: base.kunci,
                         indikator: base.indikator
@@ -324,42 +323,42 @@
 
             let globalNo = 1;
             
-            // Render PG
+            // 1. Render PG
             let htmlPG = "";
             dataPG.forEach((item) => {
                 htmlPG += `<div class="mb-3"><p class="font-medium text-gray-900 mb-1">${globalNo++}. ${item.soal}</p><div class="grid grid-cols-2 gap-x-4 gap-y-1 ml-4 text-gray-700"><div>A. ${item.opsi[0]}</div><div>B. ${item.opsi[1]}</div><div>C. ${item.opsi[2]}</div><div>D. ${item.opsi[3]}</div></div></div>`;
             });
             document.getElementById('container-soal-pg').innerHTML = htmlPG || "<p class='text-gray-400 italic'>Tidak ada soal Pilihan Ganda.</p>";
 
-            // Render PG Kompleks
+            // 2. Render PG Kompleks
             let htmlPGK = "";
             dataPGK.forEach((item) => {
                 htmlPGK += `<div class="mb-3"><p class="font-medium text-gray-900 mb-1">${globalNo++}. ${item.soal} <span class="text-xs text-blue-600 font-semibold">(Pilih lebih dari satu jawaban yang benar)</span></p><div class="ml-4 space-y-1 text-gray-700"><div>[ ] A. ${item.opsi[0]}</div><div>[ ] B. ${item.opsi[1]}</div><div>[ ] C. ${item.opsi[2]}</div><div>[ ] D. ${item.opsi[3]}</div></div></div>`;
             });
             document.getElementById('container-soal-pgk').innerHTML = htmlPGK || "<p class='text-gray-400 italic'>Tidak ada soal PG Kompleks.</p>";
 
-            // Render Menjodohkan
+            // 3. Render Menjodohkan
             let htmlJodoh = "";
             dataJodoh.forEach((item) => {
                 htmlJodoh += `<div class="mb-3"><p class="font-medium text-gray-900 mb-1">${globalNo++}. Pasangkan pernyataan berikut dengan opsi yang sesuai: ${item.soal}</p><div class="ml-4 text-gray-700 text-xs bg-gray-50 p-2 rounded border">Titik pasang / mencocokkan otomatis tersusun berdasarkan kisi-kisi materi.</div></div>`;
             });
             document.getElementById('container-soal-jodoh').innerHTML = htmlJodoh || "<p class='text-gray-400 italic'>Tidak ada soal Menjodohkan.</p>";
 
-            // Render Isian Singkat
+            // 4. Render Isian Singkat
             let htmlIsian = "";
             dataIsian.forEach((item) => {
                 htmlIsian += `<div class="mb-3"><p class="font-medium text-gray-900 mb-1">${globalNo++}. ${item.soal}</p><div class="ml-4 text-gray-500 italic">.......................................................................................................</div></div>`;
             });
             document.getElementById('container-soal-isian').innerHTML = htmlIsian || "<p class='text-gray-400 italic'>Tidak ada soal Isian Singkat.</p>";
 
-            // Render Uraian
+            // 5. Render Uraian
             let htmlUraian = "";
             dataUraian.forEach((item) => {
                 htmlUraian += `<div class="mb-3"><p class="font-medium text-gray-900 mb-1">${globalNo++}. Jelaskan dan uraikan secara rinci mengenai: ${item.soal}</p><div class="ml-4 h-16 border border-dashed border-gray-300 rounded bg-gray-50 flex items-center justify-center text-xs text-gray-400">Kolom Lembar Jawaban Uraian</div></div>`;
             });
             document.getElementById('container-soal-uraian').innerHTML = htmlUraian || "<p class='text-gray-400 italic'>Tidak ada soal Uraian.</p>";
 
-            // 2. Render Kisi-Kisi
+            // Render Kisi-Kisi
             let containerKisi = document.getElementById('container-kisi-kisi');
             containerKisi.innerHTML = "";
             let combinedAll = [...dataPG, ...dataPGK, ...dataJodoh, ...dataIsian, ...dataUraian];
@@ -367,7 +366,7 @@
                 containerKisi.innerHTML += `<tr class="border-b border-gray-200"><td class="border border-gray-300 p-2 text-center">${idx + 1}</td><td class="border border-gray-300 p-2">${mapelVal}</td><td class="border border-gray-300 p-2">${materiVal}</td><td class="border border-gray-300 p-2">${item.indikator}</td><td class="border border-gray-300 p-2 text-center">Variasi Asesmen</td></tr>`;
             });
 
-            // 3. Render Kunci Jawaban
+            // Render Kunci Jawaban
             let containerKunci = document.getElementById('container-kunci');
             containerKunci.innerHTML = "";
             combinedAll.forEach((item, idx) => {

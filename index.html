@@ -82,11 +82,11 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
                     <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Materi / Bab</label>
-                    <input type="text" id="materi" value="BAB. Perangkat & Sistem Pembelajaran" class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+                    <input type="text" id="materi" value="BAB 2. MEYAKINI HARI AKHIR DENGAN MAWASDIRI" class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Capaian Pembelajaran (CP) / KD</label>
-                    <input type="text" id="cp" value="Peserta didik mampu memahami dan menguasai materi secara mendalam." class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+                    <input type="text" id="cp" value="Peserta didik mampu memahami nilai-nilai keimanan secara komprehensif." class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none">
                 </div>
             </div>
 
@@ -96,23 +96,23 @@
                 <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
                     <div>
                         <span class="text-xs text-gray-500 block mb-1">Pilihan Ganda (PG)</span>
-                        <input type="number" id="jml-pg" value="5" min="0" max="20" class="w-full px-3 py-2 border rounded-lg text-sm text-center">
+                        <input type="number" id="jml-pg" value="5" min="0" max="25" class="w-full px-3 py-2 border rounded-lg text-sm text-center">
                     </div>
                     <div>
                         <span class="text-xs text-gray-500 block mb-1">PG Kompleks</span>
-                        <input type="number" id="jml-pgk" value="5" min="0" max="20" class="w-full px-3 py-2 border rounded-lg text-sm text-center">
+                        <input type="number" id="jml-pgk" value="5" min="0" max="25" class="w-full px-3 py-2 border rounded-lg text-sm text-center">
                     </div>
                     <div>
                         <span class="text-xs text-gray-500 block mb-1">Menjodohkan</span>
-                        <input type="number" id="jml-jodoh" value="5" min="0" max="20" class="w-full px-3 py-2 border rounded-lg text-sm text-center">
+                        <input type="number" id="jml-jodoh" value="5" min="0" max="25" class="w-full px-3 py-2 border rounded-lg text-sm text-center">
                     </div>
                     <div>
                         <span class="text-xs text-gray-500 block mb-1">Isian Singkat</span>
-                        <input type="number" id="jml-isian" value="5" min="0" max="20" class="w-full px-3 py-2 border rounded-lg text-sm text-center">
+                        <input type="number" id="jml-isian" value="5" min="0" max="25" class="w-full px-3 py-2 border rounded-lg text-sm text-center">
                     </div>
                     <div>
                         <span class="text-xs text-gray-500 block mb-1">Uraian / Essay</span>
-                        <input type="number" id="jml-uraian" value="5" min="0" max="20" class="w-full px-3 py-2 border rounded-lg text-sm text-center">
+                        <input type="number" id="jml-uraian" value="5" min="0" max="25" class="w-full px-3 py-2 border rounded-lg text-sm text-center">
                     </div>
                 </div>
             </div>
@@ -154,11 +154,11 @@
             <div id="document-content" class="p-8 md:p-12 space-y-6">
                 
                 <div class="border-2 border-gray-100 p-4 rounded-lg bg-gray-50/50 text-sm grid grid-cols-2 gap-y-2 gap-x-4">
-                    <div><span class="font-semibold">Mata Pelajaran:</span> <span id="lbl-mapel">Informatika ( TIK )</span></div>
+                    <div><span class="font-semibold">Mata Pelajaran:</span> <span id="lbl-mapel">Pendidikan Agama</span></div>
                     <div><span class="font-semibold">Kurikulum:</span> <span id="lbl-kurikulum">Kurikulum Merdeka (CP/TP)</span></div>
-                    <div><span class="font-semibold">Kelas / Semester:</span> <span id="lbl-kelas">Kelas VII / Ganjil</span></div>
+                    <div><span class="font-semibold">Kelas / Semester:</span> <span id="lbl-kelas">Kelas IX / Ganjil</span></div>
                     <div><span class="font-semibold">Tahun Ajaran:</span> <span id="lbl-tahun">2026/2027</span></div>
-                    <div class="col-span-2"><span class="font-semibold">Materi:</span> <span id="lbl-materi">BAB. Perangkat & Sistem Pembelajaran</span></div>
+                    <div class="col-span-2"><span class="font-semibold">Materi:</span> <span id="lbl-materi">BAB 2. MEYAKINI HARI AKHIR DENGAN MAWASDIRI</span></div>
                 </div>
 
                 <div class="text-center font-bold text-base md:text-lg tracking-wide underline">
@@ -222,60 +222,60 @@
     <script>
         const bankSoalMaster = {
             "Informatika ( TIK )": [
-                { soal: "Perangkat keras komputer yang berfungsi untuk memasukkan data atau perintah ke dalam sistem komputer adalah...", opsi: ["Input Device", "Output Device", "Processing Device", "Storage Device"], kunci: "A", indikator: "Mengidentifikasi perangkat masukan (input device) pada komputer." },
+                { soal: "Perangkat keras komputer yang berfungsi untuk memasukkan data atau perintah ke dalam sistem komputer adalah...", opsi: ["Input Device", "Output Device", "Processing Device", "Storage Device"], kunci: "A", indikator: "Mengidentifikasi perangkat masukan pada komputer." },
                 { soal: "Ekstensi file standar yang dihasilkan oleh aplikasi pengolah kata berbasis dokumen teks adalah...", opsi: [".xlsx", ".docx", ".pptx", ".pdf"], kunci: "B", indikator: "Menentukan ekstensi file dokumen pengolah kata." },
                 { soal: "Kombinasi tombol pintas (shortcut keyboard) untuk melakukan perintah salin (copy) data adalah...", opsi: ["Ctrl + V", "Ctrl + X", "Ctrl + C", "Ctrl + Z"], kunci: "C", indikator: "Menentukan tombol pintas untuk menyalin objek." },
-                { soal: "Jaringan komputer yang mencakup wilayah geografis antarkota atau negara disebut...", opsi: ["LAN", "MAN", "WAN", "PAN"], kunci: "C", indikator: "Membedakan jenis-jenis jaringan komputer berdasarkan cakupan wilayah." },
+                { soal: "Jaringan komputer yang mencakup wilayah geografis antarkota atau negara disebut...", opsi: ["LAN", "MAN", "WAN", "PAN"], kunci: "C", indikator: "Membedakan jenis-jenis jaringan komputer." },
                 { soal: "Program aplikasi yang digunakan untuk menjelajahi halaman web di internet dinamakan...", opsi: ["Browser", "Compiler", "Text Editor", "Operating System"], kunci: "A", indikator: "Mengidentifikasi perangkat lunak peramban web." }
             ],
             "IPA (Ilmu Pengetahuan Alam)": [
-                { soal: "Tingkatan organisasi kehidupan terkecil yang menyusun struktur fungsional makhluk hidup adalah...", opsi: ["Jaringan", "Sel", "Organ", "Sistem Organ"], kunci: "B", indikator: "Menyebutkan unit struktural dan fungsional terkecil penyusun makhluk hidup." },
+                { soal: "Tingkatan organisasi kehidupan terkecil yang menyusun struktur fungsional makhluk hidup adalah...", opsi: ["Jaringan", "Sel", "Organ", "Sistem Organ"], kunci: "B", indikator: "Menyebutkan unit struktural terkecil makhluk hidup." },
                 { soal: "Bagian dari sel tumbuhan yang memberikan bentuk kaku serta berfungsi sebagai pelindung sel adalah...", opsi: ["Dinding Sel", "Membran Sel", "Sitoplasma", "Kloroplas"], kunci: "A", indikator: "Menjelaskan fungsi dinding sel pada tumbuhan." },
                 { soal: "Proses pembuatan zat makanan pada tumbuhan hijau dengan memanfaatkan energi cahaya matahari disebut...", opsi: ["Respirasi", "Fotosintesis", "Transpirasi", "Gutasi"], kunci: "B", indikator: "Mengidentifikasi proses fotosintesis pada tumbuhan." },
                 { soal: "Satuan Internasional (SI) untuk besaran pokok suhu adalah...", opsi: ["Celcius", "Fahrenheit", "Kelvin", "Reamur"], kunci: "C", indikator: "Menentukan satuan internasional besaran suhu." },
-                { soal: "Campuran antara dua zat atau lebih yang masih dapat dibedakan zat penyusunnya disebut...", opsi: ["Larutan", "Koloid", "Suspensi", "Senyawa"], kunci: "C", indikator: "Mengklasifikasikan karakteristik campuran heterogen." }
+                { soal: "Campuran antara dua zat atau lebih yang masih dapat dibedakan zat penyusunnya disebut...", opsi: ["Larutan", "Koloid", "Suspensi", "Senyawa"], kunci: "C", indikator: "Mengklasifikasikan karakteristik campuran." }
             ],
             "Matematika": [
-                { soal: "Hasil dari operasi hitung bilangan bulat: (-12) + 8 - (-5) adalah...", opsi: ["1", "-1", "21", "-9"], kunci: "A", indikator: "Menghitung operasi hitung campuran bilangan bulat." },
+                { soal: "Hasil dari operasi hitung bilangan bulat: (-12) + 8 - (-5) adalah...", opsi: ["1", "-1", "21", "-9"], kunci: "A", indikator: "Menghitung operasi hitung bilangan bulat." },
                 { soal: "Bentuk aljabar sederhana dari bentuk 3x + 4y - x + 2y adalah...", opsi: ["4x + 6y", "2x + 6y", "2x + 2y", "4x + 2y"], kunci: "B", indikator: "Menyederhanakan bentuk aljabar sejenis." },
                 { soal: "Besar penyiku dari suatu sudut yang besarnya 40 derajat adalah...", opsi: ["50 derajat", "140 derajat", "60 derajat", "90 derajat"], kunci: "A", indikator: "Menghitung besar sudut penyiku." },
-                { soal: "Keliling persegi panjang yang memiliki panjang 15 cm dan lebar 10 cm adalah...", opsi: ["25 cm", "50 cm", "150 cm", "75 cm"], kunci: "B", indikator: "Menghitung keliling bangun datar persegi panjang." },
-                { soal: "Median dari data nilai: 70, 80, 60, 90, 75 adalah...", opsi: ["70", "75", "80", "65"], kunci: "B", indikator: "Menentukan nilai tengah (median) dari suatu data." }
+                { soal: "Keliling persegi panjang yang memiliki panjang 15 cm dan lebar 10 cm adalah...", opsi: ["25 cm", "50 cm", "150 cm", "75 cm"], kunci: "B", indikator: "Menghitung keliling persegi panjang." },
+                { soal: "Median dari data nilai: 70, 80, 60, 90, 75 adalah...", opsi: ["70", "75", "80", "65"], kunci: "B", indikator: "Menentukan nilai tengah (median) data." }
             ],
             "Bahasa Indonesia": [
                 { soal: "Teks yang memuat paparan penjelasan mengenai suatu objek, tempat, atau peristiwa secara terperinci disebut teks...", opsi: ["Laporan", "Deskripsi", "Prosedur", "Eksplanasi"], kunci: "B", indikator: "Mengidentifikasi karakteristik teks deskripsi." },
-                { soal: "Unsur intrinsik cerita yang berupa pesan atau ajaran moral yang ingin disampaikan pengarang kepada pembaca disebut...", opsi: ["Tema", "Alur", "Amanat", "Latar"], kunci: "C", indikator: "Menentukan unsur amanat dalam sebuah cerita." },
-                { soal: "Bagian awal dalam struktur teks laporan hasil observasi yang berisi pembuka atau pengenalan objek disebut...", opsi: ["Deskripsi Bagian", "Pernyataan Umum", "Simpulan", "Argumentasi"], kunci: "B", indikator: "Mengidentifikasi struktur teks laporan hasil observasi." },
+                { soal: "Unsur intrinsik cerita yang berupa pesan atau ajaran moral yang ingin disampaikan pengarang disebut...", opsi: ["Tema", "Alur", "Amanat", "Latar"], kunci: "C", indikator: "Menentukan unsur amanat dalam cerita." },
+                { soal: "Bagian awal dalam struktur teks laporan hasil observasi yang berisi pengenalan objek disebut...", opsi: ["Deskripsi Bagian", "Pernyataan Umum", "Simpulan", "Argumentasi"], kunci: "B", indikator: "Mengidentifikasi struktur teks laporan." },
                 { soal: "Kalimat yang subjeknya melakukan pekerjaan secara langsung disebut kalimat...", opsi: ["Pasif", "Aktif", "Tanya", "Perintah"], kunci: "B", indikator: "Membedakan kalimat aktif dan pasif." },
-                { soal: "Kata depan (preposisi) yang menunjukkan keterangan tempat di bawah ini yang tepat adalah...", opsi: ["Dari", "Ke", "Di", "Dan"], kunci: "C", indikator: "Penggunaan kata depan yang tepat dalam kalimat." }
+                { soal: "Kata depan (preposisi) yang menunjukkan keterangan tempat di bawah ini yang tepat adalah...", opsi: ["Dari", "Ke", "Di", "Dan"], kunci: "C", indikator: "Penggunaan kata depan yang tepat." }
             ],
             "Bahasa Inggris": [
                 { soal: "Choose the correct greeting expression when you meet someone at 08.00 AM in the morning:", opsi: ["Good night", "Good afternoon", "Good morning", "Good evening"], kunci: "C", indikator: "Memilih ungkapan salam berdasarkan waktu." },
-                { soal: "What is the English translation of 'Buku saya ada di atas meja'?", opsi: ["My book is under the table", "My book is on the table", "My book is in the bag", "My book is behind the chair"], kunci: "B", indikator: "Menerjemahkan kalimat sederhana menggunakan preposisi tempat." },
-                { soal: "Ani : 'Thank you very much for your help.' / Budi : '...'", opsi: ["I am sorry", "You are welcome", "Good bye", "Nice to meet you"], kunci: "B", indikator: "Menanggapi ungkapan terima kasih (expressing gratitude)." },
-                { soal: "The animal that produces milk and eats grass is a...", opsi: ["Cat", "Cow", "Tiger", "Fish"], kunci: "B", indikator: "Mengidentifikasi kosakata nama hewan dan karakteristiknya." },
-                { soal: "He ... to school every day by bicycle.", opsi: ["go", "goes", "going", "gone"], kunci: "B", indikator: "Menggunakan tata bahasa Simple Present Tense." }
+                { soal: "What is the English translation of 'Buku saya ada di atas meja'?", opsi: ["My book is under the table", "My book is on the table", "My book is in the bag", "My book is behind the chair"], kunci: "B", indikator: "Menerjemahkan preposisi tempat." },
+                { soal: "Ani : 'Thank you very much for your help.' / Budi : '...'", opsi: ["I am sorry", "You are welcome", "Good bye", "Nice to meet you"], kunci: "B", indikator: "Menanggapi ungkapan terima kasih." },
+                { soal: "The animal that produces milk and eats grass is a...", opsi: ["Cat", "Cow", "Tiger", "Fish"], kunci: "B", indikator: "Mengidentifikasi kosakata nama hewan." },
+                { soal: "He ... to school every day by bicycle.", opsi: ["go", "goes", "going", "gone"], kunci: "B", indikator: "Menggunakan Simple Present Tense." }
             ],
             "Ilmu Pengetahuan Sosial (IPS)": [
-                { soal: "Letak suatu wilayah di permukaan bumi yang ditentukan berdasarkan garis lintang dan garis bujur disebut letak...", opsi: ["Geografis", "Astronomis", "Geologis", "Ekonomis"], kunci: "B", indikator: "Mengidentifikasi definisi letak astronomis wilayah." },
-                { soal: "Segala bentuk kegiatan manusia untuk menghasilkan atau menambah nilai guna barang dan jasa disebut...", opsi: ["Konsumsi", "Distribusi", "Produksi", "Investasi"], kunci: "C", indikator: "Menjelaskan konsep kegiatan ekonomi produksi." },
-                { soal: "Perpindahan penduduk dari desa ke kota dalam satu negara dinamakan...", opsi: ["Urbanisasi", "Transmigrasi", "Emigrasi", "Imigrasi"], kunci: "A", indikator: "Menjelaskan definisi mobilitas penduduk urbanisasi." },
+                { soal: "Letak suatu wilayah di permukaan bumi berdasarkan garis lintang dan garis bujur disebut letak...", opsi: ["Geografis", "Astronomis", "Geologis", "Ekonomis"], kunci: "B", indikator: "Mengidentifikasi definisi letak astronomis." },
+                { soal: "Segala bentuk kegiatan manusia untuk menghasilkan atau menambah nilai guna barang dan jasa disebut...", opsi: ["Konsumsi", "Distribusi", "Produksi", "Investasi"], kunci: "C", indikator: "Menjelaskan konsep kegiatan produksi." },
+                { soal: "Perpindahan penduduk dari desa ke kota dalam satu negara dinamakan...", opsi: ["Urbanisasi", "Transmigrasi", "Emigrasi", "Imigrasi"], kunci: "A", indikator: "Menjelaskan definisi urbanisasi." },
                 { soal: "Lapisan kulit bumi paling luar yang tersusun atas batuan padat disebut...", opsi: ["Barisfer", "Selimut bumi", "Litosfer", "Astenosfer"], kunci: "C", indikator: "Mengidentifikasi lapisan litosfer bumi." },
-                { soal: "Sumber daya alam yang dapat diperbaharui contohnya adalah...", opsi: ["Minyak bumi", "Batubara", "Air dan Tumbuhan", "Gas alam"], kunci: "C", indikator: "Membedakan sumber daya alam dapat diperbaharui." }
+                { soal: "Sumber daya alam yang dapat diperbaharui contohnya adalah...", opsi: ["Minyak bumi", "Batubara", "Air dan Tumbuhan", "Gas alam"], kunci: "C", indikator: "Membedakan sumber daya alam." }
             ],
             "PPKn": [
-                { soal: "Pancasila berkedudukan sebagai dasar negara dan pandangan hidup bangsa Indonesia. Simbol untuk Sila ke-3 adalah...", opsi: ["Bintang", "Rantai", "Pohon Beringin", "Kepala Banteng"], kunci: "C", indikator: "Mengidentifikasi lambang sila Pancasila." },
-                { soal: "Undang-Undang Dasar Negara Republik Indonesia Tahun 1945 disahkan oleh panitia persiapan kemerdekaan pada tanggal...", opsi: ["17 Agustus 1945", "18 Agustus 1945", "1 Juni 1945", "29 Mei 1945"], kunci: "B", indikator: "Mengetahui sejarah pengesahan UUD NRI 1945." },
-                { soal: "Sikap menghormati adanya perbedaan suku, agama, ras, dan antargolongan di masyarakat disebut...", opsi: ["Etnnosentrisme", "Toleransi", "Chauvinisme", "Individualisme"], kunci: "B", indikator: "Menjelaskan arti penting sikap toleransi dalam keberagaman." },
+                { soal: "Pancasila berkedudukan sebagai dasar negara dan pandangan hidup bangsa. Simbol Sila ke-3 adalah...", opsi: ["Bintang", "Rantai", "Pohon Beringin", "Kepala Banteng"], kunci: "C", indikator: "Mengidentifikasi lambang sila Pancasila." },
+                { soal: "Undang-Undang Dasar Negara Republik Indonesia Tahun 1945 disahkan pada tanggal...", opsi: ["17 Agustus 1945", "18 Agustus 1945", "1 Juni 1945", "29 Mei 1945"], kunci: "B", indikator: "Mengetahui sejarah pengesahan UUD 1945." },
+                { soal: "Sikap menghormati adanya perbedaan suku, agama, ras, dan antargolongan disebut...", opsi: ["Etnnosentrisme", "Toleransi", "Chauvinisme", "Individualisme"], kunci: "B", indikator: "Menjelaskan arti penting toleransi." },
                 { soal: "Norma yang sanksinya berasal dari hati nurani berupa penyesalan adalah norma...", opsi: ["Hukum", "Kesopanan", "Kesusilaan", "Agama"], kunci: "C", indikator: "Membedakan sanksi norma kesusilaan." },
-                { soal: "Alat pemersatu bangsa Indonesia yang resmi dan diakui di seluruh dunia adalah...", opsi: ["Bahasa Daerah", "Bendera Merah Putih", "Lagu Daerah", "Pakaian Adat"], kunci: "B", indikator: "Mengidentifikasi simbol pemersatu negara." }
+                { soal: "Alat pemersatu bangsa Indonesia yang resmi dan diakui di seluruh dunia adalah...", opsi: ["Bahasa Daerah", "Bendera Merah Putih", "Lagu Daerah", "Pakaian Adat"], kunci: "B", indikator: "Mengidentifikasi simbol pemersatu." }
             ],
             "Pendidikan Agama": [
                 { soal: "Pondasi utama dalam ajaran Islam yang menjadi Rukun Islam pertama adalah...", opsi: ["Melaksanakan Shalat", "Mengucapkan Dua Kalimat Syahadat", "Menunaikan Zakat", "Menjalankan Puasa"], kunci: "B", indikator: "Menyebutkan urutan rukun Islam." },
-                { soal: "Malaikat yang bertugas menyampaikan wahyu kepada para nabi dan rasul adalah...", opsi: ["Malaikat Mikail", "Malaikat Israfil", "Malaikat Jibril", "Malaikat Izrail"], kunci: "C", indikator: "Menyebutkan tugas para malaikat Allah." },
-                { soal: "Kitab suci yang diturunkan kepada Nabi Musa AS adalah...", opsi: ["Injil", "Zabur", "Taurat", "Al-Qur'an"], kunci: "C", indikator: "Menyebutkan nama kitab suci dan rasul penerimanya." },
-                { soal: "Sifat wajib bagi rasul yang berarti 'selalu benar dan jujur' adalah...", opsi: ["Amanah", "Tabligh", "Fathanah", "Shiddiq"], kunci: "D", indikator: "Menjelaskan sifat-sifat wajib rasul Allah." },
-                { soal: "Perilaku terpuji dengan selalu menepati janji dan berkata benar disebut sifat...", opsi: ["Jujur (Amanah)", "Amanah", "Istiqamah", "Dua'i"], kunci: "A", indikator: "Mengimplementasikan perilaku terpuji dalam kehidupan." }
+                { soal: "Malaikat yang bertugas menyampaikan wahyu kepada para nabi dan rasul adalah...", opsi: ["Malaikat Mikail", "Malaikat Israfil", "Malaikat Jibril", "Malaikat Izrail"], kunci: "C", indikator: "Menyebutkan tugas malaikat Allah." },
+                { soal: "Kitab suci yang diturunkan kepada Nabi Musa AS adalah...", opsi: ["Injil", "Zabur", "Taurat", "Al-Qur'an"], kunci: "C", indikator: "Menyebutkan nama kitab suci." },
+                { soal: "Sifat wajib bagi rasul yang berarti 'selalu benar dan jujur' adalah...", opsi: ["Amanah", "Tabligh", "Fathanah", "Shiddiq"], kunci: "D", indikator: "Menjelaskan sifat wajib rasul." },
+                { soal: "Perilaku terpuji dengan selalu menepati janji dan berkata benar disebut sifat...", opsi: ["Jujur", "Amanah", "Istiqamah", "Fathanah"], kunci: "A", indikator: "Mengimplementasikan perilaku terpuji." }
             ]
         };
 
@@ -300,14 +300,14 @@
 
             const sourceSoal = bankSoalMaster[mapelVal] || bankSoalMaster["Informatika ( TIK )"];
 
-            // Helper builder array dinamis
+            // Helper builder array dinamis dengan perulangan aman tanpa batas max statis
             function buildArray(count, typeName) {
                 let arr = [];
                 for (let i = 0; i < count; i++) {
                     let base = sourceSoal[i % sourceSoal.length];
                     arr.push({
                         no: i + 1,
-                        soal: `[${typeName}] ${base.soal}`,
+                        soal: `${base.soal} (Variasi ${Math.floor(i / sourceSoal.length) + 1})`,
                         opsi: base.opsi,
                         kunci: base.kunci,
                         indikator: base.indikator
@@ -322,7 +322,6 @@
             const dataIsian = buildArray(jmlIsian, "Isian");
             const dataUraian = buildArray(jmlUraian, "Uraian");
 
-            // 1. Render Naskah Soal
             let globalNo = 1;
             
             // Render PG
@@ -398,4 +397,23 @@
             }
         }
 
-        function export
+        function exportWord() {
+            const header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export Word</title></head><body>";
+            const footer = "</body></html>";
+            const html = header + document.getElementById('document-content').innerHTML + footer;
+            const blob = new Blob(['\ufeff', html], { type: 'application/msword' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `Naskah_Soal_${document.getElementById('mapel').value}.doc`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        window.onload = function() {
+            generateSoalAI();
+        };
+    </script>
+</body>
+</html>

@@ -77,7 +77,16 @@
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Mata Pelajaran</label>
-                            <input type="text" id="mapel" required value="IPA (Ilmu Pengetahuan Alam)" class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                            <select id="mapel" class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                                <option value="Informatika ( TIK )">Informatika ( TIK )</option>
+                                <option value="IPA (Ilmu Pengetahuan Alam)">Ilmu Pengetahuan Alam (IPA)</option>
+                                <option value="Matematika">Matematika</option>
+                                <option value="Bahasa Indonesia">Bahasa Indonesia</option>
+                                <option value="Bahasa Inggris">Bahasa Inggris</option>
+                                <option value="Ilmu Pengetahuan Sosial (IPS)">Ilmu Pengetahuan Sosial (IPS)</option>
+                                <option value="PPKn">PPKn</option>
+                                <option value="Pendidikan Agama">Pendidikan Agama</option>
+                            </select>
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Kelas / Semester</label>
@@ -181,7 +190,7 @@
 
                     <!-- Identitas Ujian -->
                     <div class="grid grid-cols-2 gap-2 text-xs border p-3 rounded mb-6 bg-gray-50">
-                        <div><strong>Mata Pelajaran:</strong> <span id="out-mapel">IPA</span></div>
+                        <div><strong>Mata Pelajaran:</strong> <span id="out-mapel">Informatika ( TIK )</span></div>
                         <div><strong>Kurikulum:</strong> <span id="out-kurikulum">Kurikulum Merdeka</span></div>
                         <div><strong>Kelas / Semester:</strong> <span id="out-kelas">VII / Ganjil</span></div>
                         <div><strong>Tahun Ajaran:</strong> <span id="out-tahun">2026/2027</span></div>
@@ -279,7 +288,7 @@
                         <tbody id="history-table">
                             <tr class="border-b hover:bg-gray-50">
                                 <td class="p-3">26/10/2026</td>
-                                <td class="p-3 font-semibold">IPA</td>
+                                <td class="p-3 font-semibold">Informatika ( TIK )</td>
                                 <td class="p-3">Kurikulum Merdeka</td>
                                 <td class="p-3">Sistem Organisasi Kehidupan</td>
                                 <td class="p-3">PG, PGK, Jodoh, Isian, Uraian</td>
@@ -516,50 +525,31 @@
                             <td class="border border-gray-400 p-2 text-center">${currentNo}</td>
                         </tr>
                     `;
-                    kunciHTML += `
-                        <div>
-                            <strong>${currentNo}. Rubrik Jawaban Uraian:</strong> &bull; Skor Maksimal: 4
-                            <ul class="list-disc pl-5 text-gray-600 mt-1">
-                                <li>Menyebutkan sel tumbuhan memiliki dinding sel & kloroplas sedangkan sel hewan tidak (Skor 2)</li>
-                                <li>Menjelaskan vakuola tumbuhan lebih besar dibanding sel hewan (Skor 2)</li>
-                            </ul>
-                        </div>
-                    `;
+                    kunciHTML += `<div><strong>${currentNo}. Jawaban:</strong> Sel tumbuhan memiliki dinding sel dan kloroplas yang tidak dimiliki sel hewan... &bull; Skor: 5</div>`;
                     currentNo++;
                 }
             }
 
+            // Masukkan hasil render ke elemen HTML
             document.getElementById('content-soal').innerHTML = soalHTML;
             document.getElementById('content-kisikisi').innerHTML = kisiHTML;
             document.getElementById('content-kunci').innerHTML = kunciHTML;
         }
 
+        // Fungsi Ekspor Word Sederhana (.doc)
         function exportWord() {
-            const content = document.getElementById('printable-area').innerHTML;
-            const header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' "+
-                "xmlns:w='urn:schemas-microsoft-com:office:word' "+
-                "xmlns='http://www.w3.org/TR/REC-html40'>"+
-                "<head><meta charset='utf-8'><title>Export Word</title></head><body>";
-            const footer = "</body></html>";
-            const sourceHTML = header + content + footer;
-
-            const blob = new Blob(['\ufeff', sourceHTML], {
-                type: 'application/msword'
-            });
-
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'EduSoal_SMPN1_Plampang.doc';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
+            const header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>";
+            const footer = "</html>";
+            const sourceHTML = header + document.getElementById('printable-area').innerHTML + footer;
+            
+            const source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
+            const fileDownload = document.createElement("a");
+            document.body.appendChild(fileDownload);
+            fileDownload.href = source;
+            fileDownload.download = 'Naskah-Soal-Asesmen-SMPN1Plampang.doc';
+            fileDownload.click();
+            document.body.removeChild(fileDownload);
         }
-
-        // Render Awal Default
-        window.onload = function() {
-            generateAllData({ preventDefault: () => {} });
-        };
     </script>
 </body>
 </html>
